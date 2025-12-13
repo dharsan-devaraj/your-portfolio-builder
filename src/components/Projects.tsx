@@ -1,103 +1,82 @@
 import { motion } from "framer-motion";
-import { Folder, ExternalLink, Sparkles } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 const Projects = () => {
   return (
-    <section id="projects" className="py-24 relative overflow-hidden bg-gradient-hero">
-      {/* Background decorations */}
-      <div className="absolute bottom-0 left-0 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />
-      
-      <div className="container px-6 relative z-10">
+    <section id="projects" className="py-32 relative bg-card">
+      <div className="container px-6">
+        {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="flex items-baseline justify-between border-b border-border pb-6 mb-16"
         >
-          <span className="font-mono text-primary text-sm tracking-wider mb-4 block">
-            // FEATURED WORK
-          </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            My <span className="text-gradient">Projects</span>
+          <h2 className="text-xs font-mono tracking-wider text-muted-foreground uppercase">
+            Featured Projects
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            A showcase of my development journey and creations
-          </p>
+          <span className="text-xs font-mono text-muted-foreground">(0)</span>
         </motion.div>
 
-        {/* Coming Soon Card */}
+        {/* Coming Soon - Large typography style */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="max-w-2xl mx-auto"
+          className="py-20"
         >
-          <div className="glass rounded-3xl p-12 text-center relative overflow-hidden group">
-            {/* Animated border */}
-            <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-              <div className="absolute inset-0 rounded-3xl border-2 border-primary/30 animate-pulse-glow" />
-            </div>
+          <h3 className="text-[clamp(2.5rem,8vw,6rem)] font-bold leading-[0.9] tracking-tighter mb-8">
+            <span className="text-outline block">PROJECTS</span>
+            <span className="block">COMING SOON</span>
+          </h3>
+          
+          <p className="max-w-md text-muted-foreground leading-relaxed mt-8">
+            I'm currently working on some exciting projects! As a 2nd year student, 
+            I'm building my portfolio with innovative applications using my diverse tech stack.
+          </p>
 
-            <motion.div
-              animate={{ rotate: [0, 10, -10, 0] }}
-              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-              className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-primary/10 mb-8"
-            >
-              <Folder className="w-10 h-10 text-primary" />
-            </motion.div>
+          {/* Tech tags */}
+          <div className="flex flex-wrap gap-4 mt-8">
+            {["React", "Node.js", "Python", "MongoDB", "FastAPI"].map((tech) => (
+              <span
+                key={tech}
+                className="text-xs font-mono tracking-wider text-muted-foreground border border-border px-4 py-2"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
 
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <Sparkles className="w-5 h-5 text-primary" />
-              <h3 className="text-2xl font-bold">Coming Soon</h3>
-              <Sparkles className="w-5 h-5 text-primary" />
-            </div>
-
-            <p className="text-muted-foreground mb-8 max-w-md mx-auto">
-              I'm currently working on some exciting projects! As a 2nd year student, 
-              I'm building my portfolio with innovative applications using my diverse tech stack.
-            </p>
-
-            <div className="flex flex-wrap justify-center gap-3 mb-8">
-              {["React", "Node.js", "Python", "MongoDB"].map((tech) => (
-                <span
-                  key={tech}
-                  className="px-4 py-2 bg-secondary/50 text-sm rounded-full border border-border/50"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-
-            <div className="inline-flex items-center gap-2 text-primary font-mono text-sm">
-              <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+          {/* Status */}
+          <div className="flex items-center gap-3 mt-12">
+            <div className="w-2 h-2 bg-foreground rounded-full animate-pulse" />
+            <span className="text-xs font-mono text-muted-foreground tracking-wider uppercase">
               In Progress
-            </div>
+            </span>
           </div>
         </motion.div>
 
-        {/* Future project placeholders */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12"
-        >
+        {/* Placeholder project slots */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border mt-16">
           {[1, 2, 3].map((i) => (
-            <div
+            <motion.div
               key={i}
-              className="glass rounded-2xl p-6 opacity-40 border-dashed hover:opacity-60 transition-opacity duration-300"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="bg-card p-8 group cursor-pointer hover:bg-secondary/30 transition-colors"
             >
-              <div className="w-full h-32 bg-secondary/30 rounded-xl mb-4 flex items-center justify-center">
-                <ExternalLink className="w-8 h-8 text-muted-foreground/50" />
+              <div className="aspect-video bg-secondary/50 mb-6 flex items-center justify-center">
+                <ArrowUpRight className="w-6 h-6 text-muted-foreground/30 group-hover:text-muted-foreground transition-colors" />
               </div>
-              <div className="h-4 bg-secondary/50 rounded-full w-3/4 mb-2" />
-              <div className="h-3 bg-secondary/30 rounded-full w-1/2" />
-            </div>
+              <div className="h-4 bg-secondary/50 w-3/4 mb-2" />
+              <div className="h-3 bg-secondary/30 w-1/2" />
+            </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

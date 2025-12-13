@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Send, Mail, Linkedin, MapPin } from "lucide-react";
+import { Send, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -14,7 +14,6 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 1000));
     
     toast({
@@ -27,138 +26,133 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-24 relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl" />
-      
-      <div className="container px-6 relative z-10">
+    <section id="contact" className="py-32 relative">
+      <div className="container px-6">
+        {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="flex items-baseline justify-between border-b border-border pb-6 mb-16"
         >
-          <span className="font-mono text-primary text-sm tracking-wider mb-4 block">
-            // GET IN TOUCH
-          </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            Let's <span className="text-gradient">Connect</span>
+          <h2 className="text-xs font-mono tracking-wider text-muted-foreground uppercase">
+            Get In Touch
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Have a project in mind or want to collaborate? Feel free to reach out!
-          </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
-          {/* Contact Info */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          {/* Left side - Large CTA */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="space-y-8"
           >
-            <div className="glass rounded-2xl p-8">
-              <h3 className="text-2xl font-bold mb-6">Contact Info</h3>
+            <h3 className="text-[clamp(2rem,5vw,4rem)] font-bold leading-[1] tracking-tighter mb-8">
+              LET'S WORK
+              <br />
+              <span className="text-outline">TOGETHER</span>
+            </h3>
+            
+            <p className="text-muted-foreground max-w-sm leading-relaxed mb-8">
+              Have a project in mind or want to collaborate? Feel free to reach out!
+            </p>
+
+            {/* Contact links */}
+            <div className="space-y-4">
+              <a
+                href="mailto:dharsand0678@gmail.com"
+                className="flex items-center justify-between py-4 border-b border-border group hover:border-foreground transition-colors"
+              >
+                <span className="text-sm font-mono text-muted-foreground group-hover:text-foreground transition-colors">
+                  dharsand0678@gmail.com
+                </span>
+                <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors" />
+              </a>
               
-              <div className="space-y-6">
-                <div className="flex items-center gap-4 group">
-                  <div className="p-3 rounded-xl bg-primary/10 group-hover:glow-soft transition-all duration-300">
-                    <Mail className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">Email</p>
-                    <p className="font-medium">dharsand0678@gmail.com</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4 group">
-                  <div className="p-3 rounded-xl bg-primary/10 group-hover:glow-soft transition-all duration-300">
-                    <Linkedin className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">LinkedIn</p>
-                    <a 
-                      href="https://www.linkedin.com/in/dharsand0678"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-medium hover:text-primary transition-colors"
-                    >
-                      linkedin.com/in/dharsand0678
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4 group">
-                  <div className="p-3 rounded-xl bg-primary/10 group-hover:glow-soft transition-all duration-300">
-                    <MapPin className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">Location</p>
-                    <p className="font-medium">SRM University, KTR</p>
-                  </div>
-                </div>
+              <a
+                href="https://www.linkedin.com/in/dharsand0678"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between py-4 border-b border-border group hover:border-foreground transition-colors"
+              >
+                <span className="text-sm font-mono text-muted-foreground group-hover:text-foreground transition-colors">
+                  LinkedIn
+                </span>
+                <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors" />
+              </a>
+              
+              <div className="flex items-center justify-between py-4 border-b border-border">
+                <span className="text-sm font-mono text-muted-foreground">
+                  SRM University, KTR
+                </span>
               </div>
             </div>
 
-            {/* Terminal-style card */}
-            <div className="glass rounded-2xl p-6 font-mono text-sm">
+            {/* Terminal style */}
+            <div className="mt-12 p-6 bg-card border border-border font-mono text-xs">
               <div className="flex items-center gap-2 mb-4">
-                <div className="w-3 h-3 rounded-full bg-destructive" />
-                <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                <div className="w-3 h-3 rounded-full bg-green-500" />
+                <div className="w-2 h-2 rounded-full bg-muted-foreground/30" />
+                <div className="w-2 h-2 rounded-full bg-muted-foreground/30" />
+                <div className="w-2 h-2 rounded-full bg-muted-foreground/30" />
               </div>
               <div className="space-y-1 text-muted-foreground">
-                <p><span className="text-primary">$</span> whoami</p>
-                <p className="text-foreground pl-4">DHARSAN D - Full Stack Developer</p>
-                <p><span className="text-primary">$</span> current_status</p>
-                <p className="text-foreground pl-4">Open to opportunities ✓</p>
-                <p><span className="text-primary">$</span> _<span className="animate-pulse">|</span></p>
+                <p><span className="text-foreground">$</span> whoami</p>
+                <p className="pl-4 text-foreground">DHARSAN D - Full Stack Developer</p>
+                <p><span className="text-foreground">$</span> current_status</p>
+                <p className="pl-4 text-foreground">Open to opportunities ✓</p>
+                <p><span className="text-foreground">$</span> _<span className="animate-pulse">|</span></p>
               </div>
             </div>
           </motion.div>
 
-          {/* Contact Form */}
+          {/* Right side - Contact Form */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <form onSubmit={handleSubmit} className="glass rounded-2xl p-8 space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
-                <label className="text-sm font-medium">Name</label>
+                <label className="text-xs font-mono text-muted-foreground tracking-wider uppercase">
+                  Name
+                </label>
                 <Input
                   required
                   placeholder="Your name"
-                  className="bg-secondary/50 border-border/50 focus:border-primary/50 h-12"
+                  className="bg-transparent border-border border-0 border-b rounded-none px-0 h-12 focus-visible:ring-0 focus-visible:border-foreground transition-colors"
                 />
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium">Email</label>
+                <label className="text-xs font-mono text-muted-foreground tracking-wider uppercase">
+                  Email
+                </label>
                 <Input
                   required
                   type="email"
                   placeholder="your@email.com"
-                  className="bg-secondary/50 border-border/50 focus:border-primary/50 h-12"
+                  className="bg-transparent border-border border-0 border-b rounded-none px-0 h-12 focus-visible:ring-0 focus-visible:border-foreground transition-colors"
                 />
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium">Message</label>
+                <label className="text-xs font-mono text-muted-foreground tracking-wider uppercase">
+                  Message
+                </label>
                 <Textarea
                   required
                   placeholder="Tell me about your project..."
-                  className="bg-secondary/50 border-border/50 focus:border-primary/50 min-h-[150px] resize-none"
+                  className="bg-transparent border-border border-0 border-b rounded-none px-0 min-h-[150px] resize-none focus-visible:ring-0 focus-visible:border-foreground transition-colors"
                 />
               </div>
 
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-gradient-primary text-primary-foreground h-12 font-semibold glow-soft hover:glow-primary transition-all duration-300"
+                className="w-full bg-foreground text-background hover:bg-foreground/90 h-14 font-mono text-xs tracking-wider uppercase rounded-none"
               >
                 {isSubmitting ? (
                   "Sending..."
