@@ -2,58 +2,30 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 const skillCategories = [
-  {
-    title: "Languages",
-    skills: ["Python", "C++", "JavaScript", "PHP"],
-  },
-  {
-    title: "Frontend",
-    skills: ["HTML", "CSS", "React"],
-  },
-  {
-    title: "Backend",
-    skills: ["Node.js", "Express.js", "Flask", "Django", "FastAPI"],
-  },
-  {
-    title: "Databases",
-    skills: ["MySQL", "MongoDB"],
-  },
+  { title: "Languages", skills: ["Python", "C++", "JavaScript", "PHP"] },
+  { title: "Frontend", skills: ["HTML", "CSS", "React"] },
+  { title: "Backend", skills: ["Node.js", "Express.js", "Flask", "Django", "FastAPI"] },
+  { title: "Databases", skills: ["MySQL", "MongoDB"] },
 ];
 
 const Skills = () => {
   const sectionRef = useRef<HTMLElement>(null);
-  
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],
   });
 
-  const headerY = useTransform(scrollYProgress, [0, 0.3], [50, 0]);
+  const headerX = useTransform(scrollYProgress, [0, 0.3], [-100, 0]);
   const headerOpacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
 
-  // Skill item animation
-  const skillVariants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: i * 0.05,
-        duration: 0.5,
-        ease: [0.16, 1, 0.3, 1] as const,
-      },
-    }),
-  };
-
   return (
-    <section ref={sectionRef} id="skills" className="py-32 relative">
+    <section ref={sectionRef} id="skills" className="py-32 relative overflow-hidden">
       <div className="container px-6">
-        {/* Section header */}
         <motion.div
-          style={{ y: headerY, opacity: headerOpacity }}
-          className="flex items-baseline justify-between border-b border-border pb-6 mb-16"
+          style={{ x: headerX, opacity: headerOpacity }}
+          className="flex items-baseline justify-between border-b border-border pb-6 mb-20"
         >
-          <h2 className="text-xs font-mono tracking-wider text-muted-foreground uppercase">
+          <h2 className="text-xs font-mono tracking-[0.3em] text-muted-foreground uppercase">
             Skills & Technologies
           </h2>
           <span className="text-xs font-mono text-muted-foreground">
@@ -61,37 +33,34 @@ const Skills = () => {
           </span>
         </motion.div>
 
-        {/* Skills grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16">
           {skillCategories.map((category, categoryIndex) => (
             <motion.div
               key={category.title}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ 
-                duration: 0.6, 
-                delay: categoryIndex * 0.1,
-                ease: [0.16, 1, 0.3, 1]
-              }}
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: categoryIndex * 0.15, duration: 0.6 }}
             >
-              <h3 className="text-sm font-mono text-muted-foreground mb-6 tracking-wider">
+              <h3 className="text-xs font-mono text-muted-foreground mb-8 tracking-[0.2em] uppercase border-b border-border/50 pb-3">
                 {category.title}
               </h3>
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {category.skills.map((skill, skillIndex) => (
                   <motion.div
                     key={skill}
-                    custom={skillIndex + categoryIndex * 4}
-                    variants={skillVariants}
-                    initial="hidden"
-                    whileInView="visible"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="group"
+                    transition={{ delay: (categoryIndex * 4 + skillIndex) * 0.05, duration: 0.5 }}
                   >
-                    <span className="text-xl md:text-2xl font-bold tracking-tight text-foreground group-hover:text-muted-foreground transition-colors duration-300 cursor-default inline-block group-hover:translate-x-2 transition-transform">
+                    <motion.span
+                      whileHover={{ x: 20, color: "hsl(var(--muted-foreground))" }}
+                      transition={{ duration: 0.3 }}
+                      className="text-2xl md:text-3xl font-bold tracking-tight cursor-default inline-block text-foreground"
+                    >
                       {skill}
-                    </span>
+                    </motion.span>
                   </motion.div>
                 ))}
               </div>
@@ -99,20 +68,23 @@ const Skills = () => {
           ))}
         </div>
 
-        {/* Status indicator */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-          className="mt-20 pt-8 border-t border-border"
+          transition={{ delay: 0.6, duration: 0.8 }}
+          className="mt-24 pt-8 border-t border-border"
         >
-          <div className="flex items-center gap-3">
-            <div className="w-2 h-2 bg-foreground rounded-full animate-pulse" />
-            <span className="text-xs font-mono text-muted-foreground tracking-wider">
+          <motion.div className="flex items-center gap-4" whileHover={{ x: 10 }} transition={{ duration: 0.3 }}>
+            <motion.div 
+              className="w-2 h-2 bg-foreground rounded-full"
+              animate={{ scale: [1, 1.5, 1], opacity: [1, 0.5, 1] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <span className="text-xs font-mono text-muted-foreground tracking-[0.15em]">
               Always learning and exploring new technologies
             </span>
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>
