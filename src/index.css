@@ -125,7 +125,107 @@
   }
 
   .text-outline {
-    -webkit-text-stroke: 1px hsl(var(--foreground) / 0.3);
+    -webkit-text-stroke: 1px hsl(var(--foreground) / 0.4);
     color: transparent;
+  }
+
+  /* Magnetic button effect */
+  .magnetic-btn {
+    @apply relative overflow-hidden transition-all duration-300 ease-out;
+  }
+
+  .magnetic-btn::before {
+    content: '';
+    @apply absolute inset-0 bg-foreground translate-y-full transition-transform duration-300 ease-out;
+  }
+
+  .magnetic-btn:hover::before {
+    @apply translate-y-0;
+  }
+
+  .magnetic-btn span {
+    @apply relative z-10 transition-colors duration-300;
+  }
+
+  .magnetic-btn:hover span {
+    @apply text-background;
+  }
+
+  /* Line reveal animation */
+  .line-reveal {
+    @apply relative overflow-hidden;
+  }
+
+  .line-reveal::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-px bg-foreground scale-x-0 origin-left transition-transform duration-500 ease-out;
+  }
+
+  .line-reveal:hover::after {
+    @apply scale-x-100;
+  }
+
+  /* Character stagger animation */
+  @keyframes char-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .char-reveal {
+    animation: char-reveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* Scale on scroll */
+  @keyframes scale-up {
+    from {
+      transform: scale(0.9);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  /* Slide up reveal */
+  @keyframes slide-up-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(60px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .slide-up-reveal {
+    animation: slide-up-reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* Arrow bounce */
+  @keyframes arrow-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
+
+  .arrow-bounce {
+    animation: arrow-bounce 1.5s ease-in-out infinite;
+  }
+
+  /* Copy feedback */
+  @keyframes copy-flash {
+    0% { background-color: hsl(var(--foreground) / 0.1); }
+    100% { background-color: transparent; }
+  }
+
+  .copy-flash {
+    animation: copy-flash 0.3s ease-out;
   }
 }
