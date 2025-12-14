@@ -1,14 +1,24 @@
-import { motion } from "framer-motion";
-import { Send, ArrowUpRight } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Send, ArrowUpRight, Copy, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 const Contact = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  const titleY = useTransform(scrollYProgress, [0, 0.5], [100, 0]);
+  const titleOpacity = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -25,8 +35,35 @@ const Contact = () => {
     (e.target as HTMLFormElement).reset();
   };
 
+  const copyEmail = async () => {
+    await navigator.clipboard.writeText("dharsand0678@gmail.com");
+    setCopied(true);
+    toast({
+      title: "Email copied!",
+      description: "dharsand0678@gmail.com has been copied to clipboard.",
+    });
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  // Character animation for title
+  const charVariants = {
+    hidden: { opacity: 0, y: 80 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.03,
+        duration: 0.6,
+        ease: [0.16, 1, 0.3, 1] as const,
+      },
+    }),
+  };
+
+  const line1 = "LET'S WORK";
+  const line2 = "TOGETHER";
+
   return (
-    <section id="contact" className="py-32 relative">
+    <section ref={sectionRef} id="contact" className="py-32 relative">
       <div className="container px-6">
         {/* Section header */}
         <motion.div
@@ -42,56 +79,121 @@ const Contact = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          {/* Left side - Large CTA */}
+          {/* Left side - Large CTA with scroll animation */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
           >
-            <h3 className="text-[clamp(2rem,5vw,4rem)] font-bold leading-[1] tracking-tighter mb-8">
-              LET'S WORK
-              <br />
-              <span className="text-outline">TOGETHER</span>
-            </h3>
+            <motion.h3 
+              style={{ y: titleY, opacity: titleOpacity }}
+              className="text-[clamp(2.5rem,6vw,5rem)] font-bold leading-[0.9] tracking-tighter mb-8 overflow-hidden"
+            >
+              <span className="block">
+                {line1.split("").map((char, i) => (
+                  <motion.span
+                    key={i}
+                    custom={i}
+                    variants={charVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    className="inline-block"
+                  >
+                    {char === " " ? "\u00A0" : char}
+                  </motion.span>
+                ))}
+              </span>
+              <span className="block text-outline">
+                {line2.split("").map((char, i) => (
+                  <motion.span
+                    key={i}
+                    custom={i + line1.length}
+                    variants={charVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    className="inline-block"
+                  >
+                    {char}
+                  </motion.span>
+                ))}
+              </span>
+            </motion.h3>
             
-            <p className="text-muted-foreground max-w-sm leading-relaxed mb-8">
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+              className="text-muted-foreground max-w-sm leading-relaxed mb-8"
+            >
               Have a project in mind or want to collaborate? Feel free to reach out!
-            </p>
+            </motion.p>
 
             {/* Contact links */}
             <div className="space-y-4">
-              <a
-                href="mailto:dharsand0678@gmail.com"
-                className="flex items-center justify-between py-4 border-b border-border group hover:border-foreground transition-colors"
+              <motion.button
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4, duration: 0.5 }}
+                onClick={copyEmail}
+                className="w-full flex items-center justify-between py-4 border-b border-border group hover:border-foreground transition-all duration-300 text-left"
               >
-                <span className="text-sm font-mono text-muted-foreground group-hover:text-foreground transition-colors">
+                <span className="text-sm font-mono text-muted-foreground group-hover:text-foreground transition-colors duration-300">
                   dharsand0678@gmail.com
                 </span>
-                <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors" />
-              </a>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-mono text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {copied ? "Copied!" : "Click to copy"}
+                  </span>
+                  {copied ? (
+                    <Check className="w-4 h-4 text-foreground" />
+                  ) : (
+                    <Copy className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors duration-300" />
+                  )}
+                </div>
+              </motion.button>
               
-              <a
+              <motion.a
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5, duration: 0.5 }}
                 href="https://www.linkedin.com/in/dharsand0678"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-between py-4 border-b border-border group hover:border-foreground transition-colors"
+                className="flex items-center justify-between py-4 border-b border-border group hover:border-foreground transition-all duration-300"
               >
-                <span className="text-sm font-mono text-muted-foreground group-hover:text-foreground transition-colors">
+                <span className="text-sm font-mono text-muted-foreground group-hover:text-foreground transition-colors duration-300">
                   LinkedIn
                 </span>
-                <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors" />
-              </a>
+                <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" />
+              </motion.a>
               
-              <div className="flex items-center justify-between py-4 border-b border-border">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.6, duration: 0.5 }}
+                className="flex items-center justify-between py-4 border-b border-border"
+              >
                 <span className="text-sm font-mono text-muted-foreground">
                   SRM University, KTR
                 </span>
-              </div>
+              </motion.div>
             </div>
 
             {/* Terminal style */}
-            <div className="mt-12 p-6 bg-card border border-border font-mono text-xs">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.7, duration: 0.6 }}
+              className="mt-12 p-6 bg-card border border-border font-mono text-xs"
+            >
               <div className="flex items-center gap-2 mb-4">
                 <div className="w-2 h-2 rounded-full bg-muted-foreground/30" />
                 <div className="w-2 h-2 rounded-full bg-muted-foreground/30" />
@@ -104,7 +206,7 @@ const Contact = () => {
                 <p className="pl-4 text-foreground">Open to opportunities ✓</p>
                 <p><span className="text-foreground">$</span> _<span className="animate-pulse">|</span></p>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
 
           {/* Right side - Contact Form */}
@@ -152,16 +254,18 @@ const Contact = () => {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-foreground text-background hover:bg-foreground/90 h-14 font-mono text-xs tracking-wider uppercase rounded-none"
+                className="magnetic-btn w-full bg-transparent text-foreground border border-foreground hover:bg-foreground hover:text-background h-14 font-mono text-xs tracking-wider uppercase rounded-none transition-all duration-300"
               >
-                {isSubmitting ? (
-                  "Sending..."
-                ) : (
-                  <>
-                    Send Message
-                    <Send className="w-4 h-4 ml-2" />
-                  </>
-                )}
+                <span className="relative z-10">
+                  {isSubmitting ? (
+                    "Sending..."
+                  ) : (
+                    <span className="flex items-center justify-center gap-2">
+                      Send Message
+                      <Send className="w-4 h-4" />
+                    </span>
+                  )}
+                </span>
               </Button>
             </form>
           </motion.div>
