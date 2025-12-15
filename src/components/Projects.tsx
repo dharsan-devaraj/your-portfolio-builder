@@ -13,7 +13,7 @@ const Projects = () => {
   const titleOpacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
 
   const charVariants = {
-    hidden: { opacity: 0, y: 80 },
+    hidden: { opacity: 0, y: 60 },
     visible: (i: number) => ({
       opacity: 1,
       y: 0,
@@ -25,76 +25,112 @@ const Projects = () => {
   const line2 = "COMING SOON";
 
   return (
-    <section ref={sectionRef} id="projects" className="py-32 relative bg-card overflow-hidden">
+    <section ref={sectionRef} id="projects" className="py-24 relative bg-card overflow-hidden">
       <div className="container px-6 relative z-10">
         <motion.div
           style={{ x: titleX, opacity: titleOpacity }}
           className="flex items-baseline justify-between border-b border-border pb-6 mb-16"
         >
-          <h2 className="text-xs font-mono tracking-[0.3em] text-muted-foreground uppercase">Featured Projects</h2>
-          <span className="text-xs font-mono text-muted-foreground">(0)</span>
+          <h2 className="text-[10px] font-mono tracking-[0.3em] text-muted-foreground/50 uppercase hover:text-muted-foreground transition-colors duration-300 cursor-default">
+            Featured Projects
+          </h2>
+          <span className="text-[10px] font-mono text-muted-foreground/50 hover:text-muted-foreground transition-colors duration-300 cursor-default">(0)</span>
         </motion.div>
 
-        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="py-20">
-          <h3 className="text-[clamp(2.5rem,10vw,8rem)] font-bold leading-[0.85] tracking-[-0.04em] mb-8 overflow-hidden">
-            <span className="text-outline block">
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="py-16">
+          <h3 className="text-[clamp(2rem,8vw,6rem)] font-bold leading-[0.9] tracking-[-0.03em] mb-6 overflow-hidden">
+            <span className="block text-muted-foreground/30">
               {line1.split("").map((char, i) => (
-                <motion.span key={i} custom={i} variants={charVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} className="inline-block">
+                <motion.span 
+                  key={i} 
+                  custom={i} 
+                  variants={charVariants} 
+                  initial="hidden" 
+                  whileInView="visible" 
+                  viewport={{ once: true }} 
+                  className="inline-block hover:text-muted-foreground/50 transition-colors duration-300"
+                >
                   {char}
                 </motion.span>
               ))}
             </span>
-            <span className="block text-foreground">
+            <span className="block text-muted-foreground/50">
               {line2.split("").map((char, i) => (
-                <motion.span key={i} custom={i + line1.length} variants={charVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} className="inline-block">
+                <motion.span 
+                  key={i} 
+                  custom={i + line1.length} 
+                  variants={charVariants} 
+                  initial="hidden" 
+                  whileInView="visible" 
+                  viewport={{ once: true }} 
+                  className="inline-block hover:text-muted-foreground/70 transition-colors duration-300"
+                >
                   {char === " " ? "\u00A0" : char}
                 </motion.span>
               ))}
             </span>
           </h3>
           
-          <motion.p initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.5, duration: 0.6 }} className="max-w-md text-muted-foreground leading-relaxed mt-8">
+          <motion.p 
+            initial={{ opacity: 0, x: -40 }} 
+            whileInView={{ opacity: 1, x: 0 }} 
+            viewport={{ once: true }} 
+            transition={{ delay: 0.5, duration: 0.6 }} 
+            className="max-w-md text-muted-foreground/50 leading-relaxed text-sm mt-8 hover:text-muted-foreground/70 transition-colors duration-300 cursor-default"
+          >
             I'm currently working on some exciting projects! As a 2nd year student, I'm building my portfolio with innovative full-stack applications.
           </motion.p>
 
-          <div className="flex flex-wrap gap-4 mt-10">
+          <div className="flex flex-wrap gap-3 mt-8">
             {["React", "Node.js", "Python", "MongoDB", "FastAPI", "Django"].map((tech, i) => (
               <motion.span
                 key={tech}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.7 + i * 0.08, duration: 0.4 }}
-                whileHover={{ scale: 1.1, borderColor: "hsl(var(--foreground))" }}
-                className="text-xs font-mono tracking-wider text-muted-foreground border border-border px-5 py-2.5 cursor-default transition-colors duration-300"
+                transition={{ delay: 0.7 + i * 0.06, duration: 0.4 }}
+                whileHover={{ scale: 1.05 }}
+                className="text-[10px] font-mono tracking-wider text-muted-foreground/50 border border-border/50 px-4 py-2 cursor-default hover:text-muted-foreground hover:border-muted-foreground/50 transition-all duration-300"
               >
                 {tech}
               </motion.span>
             ))}
           </div>
 
-          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 1 }} className="flex items-center gap-4 mt-14">
-            <motion.div className="w-2 h-2 bg-foreground rounded-full" animate={{ scale: [1, 1.5, 1], opacity: [1, 0.5, 1] }} transition={{ duration: 2, repeat: Infinity }} />
-            <span className="text-xs font-mono text-muted-foreground tracking-[0.15em] uppercase">In Progress</span>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }} 
+            whileInView={{ opacity: 1, y: 0 }} 
+            viewport={{ once: true }} 
+            transition={{ delay: 1 }} 
+            className="flex items-center gap-3 mt-12"
+          >
+            <motion.div 
+              className="w-1.5 h-1.5 bg-muted-foreground/50 rounded-full" 
+              animate={{ scale: [1, 1.4, 1], opacity: [1, 0.5, 1] }} 
+              transition={{ duration: 2, repeat: Infinity }} 
+            />
+            <span className="text-[10px] font-mono text-muted-foreground/50 tracking-[0.15em] uppercase hover:text-muted-foreground transition-colors duration-300 cursor-default">
+              In Progress
+            </span>
           </motion.div>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border mt-20">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border/30 mt-16">
           {[1, 2, 3].map((i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.15, duration: 0.6 }}
-              whileHover={{ scale: 1.02, y: -5 }}
-              className="bg-card p-8 cursor-pointer overflow-hidden"
+              transition={{ delay: i * 0.1, duration: 0.5 }}
+              whileHover={{ y: -3 }}
+              className="bg-card p-6 cursor-pointer overflow-hidden"
             >
-              <div className="aspect-video bg-secondary/30 mb-6 flex items-center justify-center border border-border/50">
-                <ArrowUpRight className="w-8 h-8 text-muted-foreground/30" />
+              <div className="aspect-video bg-secondary/20 mb-5 flex items-center justify-center border border-border/30">
+                <ArrowUpRight className="w-6 h-6 text-muted-foreground/20" />
               </div>
-              <div className="h-4 bg-secondary/50 w-3/4 mb-3" />
-              <div className="h-3 bg-secondary/30 w-1/2" />
+              <div className="h-3 bg-secondary/40 w-3/4 mb-2" />
+              <div className="h-2 bg-secondary/20 w-1/2" />
             </motion.div>
           ))}
         </div>
