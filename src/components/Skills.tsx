@@ -9,11 +9,14 @@ const skillCategories = [
 ];
 
 const roleLines = [
-  "Building scalable full-stack applications",
-  "Crafting modern & responsive interfaces",
-  "Developing robust RESTful APIs",
-  "Architecting database solutions",
-  "Delivering seamless user experiences",
+  "BUILDING SCALABLE FULL-STACK WEB APPLICATIONS WITH MODERN FRAMEWORKS",
+  "CRAFTING RESPONSIVE & PIXEL-PERFECT USER INTERFACES",
+  "DEVELOPING ROBUST & SECURE RESTFUL API ARCHITECTURES",
+  "ARCHITECTING EFFICIENT DATABASE SOLUTIONS & DATA MODELS",
+  "DELIVERING SEAMLESS & INTUITIVE USER EXPERIENCES",
+  "IMPLEMENTING CLEAN CODE & BEST DEVELOPMENT PRACTICES",
+  "INTEGRATING THIRD-PARTY SERVICES & CLOUD PLATFORMS",
+  "OPTIMIZING PERFORMANCE & APPLICATION SCALABILITY",
 ];
 
 const Skills = () => {
@@ -34,13 +37,16 @@ const Skills = () => {
   const headerOpacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
 
   // Lines sliding in opposite directions - more dramatic movement
-  const line1X = useTransform(linesScrollProgress, [0, 0.6], [-400, 0]);
-  const line2X = useTransform(linesScrollProgress, [0, 0.6], [400, 0]);
-  const line3X = useTransform(linesScrollProgress, [0, 0.6], [-500, 0]);
-  const line4X = useTransform(linesScrollProgress, [0, 0.6], [500, 0]);
-  const line5X = useTransform(linesScrollProgress, [0, 0.6], [-450, 0]);
+  const line1X = useTransform(linesScrollProgress, [0, 0.6], [-600, 0]);
+  const line2X = useTransform(linesScrollProgress, [0, 0.6], [600, 0]);
+  const line3X = useTransform(linesScrollProgress, [0, 0.6], [-700, 0]);
+  const line4X = useTransform(linesScrollProgress, [0, 0.6], [700, 0]);
+  const line5X = useTransform(linesScrollProgress, [0, 0.6], [-650, 0]);
+  const line6X = useTransform(linesScrollProgress, [0, 0.6], [650, 0]);
+  const line7X = useTransform(linesScrollProgress, [0, 0.6], [-600, 0]);
+  const line8X = useTransform(linesScrollProgress, [0, 0.6], [600, 0]);
   
-  const lineTransforms = [line1X, line2X, line3X, line4X, line5X];
+  const lineTransforms = [line1X, line2X, line3X, line4X, line5X, line6X, line7X, line8X];
 
   return (
     <section ref={sectionRef} id="skills" className="py-24 relative overflow-hidden">
@@ -53,10 +59,10 @@ const Skills = () => {
             className="border-b border-muted-foreground/20 group cursor-default"
           >
             <motion.div
-              className="py-6 md:py-8 px-4 md:px-8 transition-colors duration-300 group-hover:bg-orange-500"
+              className="py-8 md:py-10 px-4 md:px-8 transition-colors duration-300"
             >
               <motion.p
-                className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-muted-foreground/50 group-hover:text-background transition-colors duration-300 whitespace-nowrap"
+                className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-muted-foreground/50 group-hover:text-orange-500 transition-colors duration-300 whitespace-nowrap uppercase tracking-tight"
               >
                 {line}
               </motion.p>
