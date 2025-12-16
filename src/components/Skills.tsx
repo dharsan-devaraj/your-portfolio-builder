@@ -36,15 +36,15 @@ const Skills = () => {
   const headerX = useTransform(scrollYProgress, [0, 0.3], [-100, 0]);
   const headerOpacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
 
-  // Lines sliding in opposite directions - more dramatic movement
-  const line1X = useTransform(linesScrollProgress, [0, 0.6], [-600, 0]);
-  const line2X = useTransform(linesScrollProgress, [0, 0.6], [600, 0]);
-  const line3X = useTransform(linesScrollProgress, [0, 0.6], [-700, 0]);
-  const line4X = useTransform(linesScrollProgress, [0, 0.6], [700, 0]);
-  const line5X = useTransform(linesScrollProgress, [0, 0.6], [-650, 0]);
-  const line6X = useTransform(linesScrollProgress, [0, 0.6], [650, 0]);
-  const line7X = useTransform(linesScrollProgress, [0, 0.6], [-600, 0]);
-  const line8X = useTransform(linesScrollProgress, [0, 0.6], [600, 0]);
+  // Lines sliding in opposite directions - continuous movement throughout scroll
+  const line1X = useTransform(linesScrollProgress, [0, 1], [-800, 200]);
+  const line2X = useTransform(linesScrollProgress, [0, 1], [800, -200]);
+  const line3X = useTransform(linesScrollProgress, [0, 1], [-900, 250]);
+  const line4X = useTransform(linesScrollProgress, [0, 1], [900, -250]);
+  const line5X = useTransform(linesScrollProgress, [0, 1], [-850, 220]);
+  const line6X = useTransform(linesScrollProgress, [0, 1], [850, -220]);
+  const line7X = useTransform(linesScrollProgress, [0, 1], [-800, 200]);
+  const line8X = useTransform(linesScrollProgress, [0, 1], [800, -200]);
   
   const lineTransforms = [line1X, line2X, line3X, line4X, line5X, line6X, line7X, line8X];
 
@@ -93,7 +93,7 @@ const Skills = () => {
               viewport={{ once: true }}
               transition={{ delay: categoryIndex * 0.15, duration: 0.6 }}
             >
-              <h3 className="text-[10px] font-mono text-muted-foreground/50 mb-8 tracking-[0.2em] uppercase border-b border-border/50 pb-3 hover:text-muted-foreground transition-colors duration-300 cursor-default">
+              <h3 className="text-[10px] font-mono text-muted-foreground/50 mb-8 tracking-[0.2em] uppercase border-b border-border/50 pb-3 hover:text-orange-500 transition-colors duration-300 cursor-default">
                 {category.title}
               </h3>
               <div className="space-y-4">
@@ -108,7 +108,7 @@ const Skills = () => {
                     <motion.span
                       whileHover={{ x: 15 }}
                       transition={{ duration: 0.3 }}
-                      className="text-xl md:text-2xl font-bold tracking-tight cursor-default inline-block text-muted-foreground/50 hover:text-muted-foreground transition-colors duration-300"
+                      className="text-xl md:text-2xl font-bold tracking-tight cursor-default inline-block text-muted-foreground/50 hover:text-orange-500 transition-colors duration-300"
                     >
                       {skill}
                     </motion.span>
