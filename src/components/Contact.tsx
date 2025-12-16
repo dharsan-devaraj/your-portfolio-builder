@@ -1,17 +1,11 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Send, ArrowUpRight, Copy, Check } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { ArrowUpRight, Copy, Check } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useState, useRef } from "react";
-import { supabase } from "@/integrations/supabase/client";
 
 const Contact = () => {
   const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const sectionRef = useRef<HTMLElement>(null);
   
   const { scrollYProgress } = useScroll({
@@ -22,35 +16,6 @@ const Contact = () => {
   const titleX = useTransform(scrollYProgress, [0, 0.3], [-100, 0]);
   const titleOpacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    try {
-      const { data, error } = await supabase.functions.invoke('send-contact-email', {
-        body: formData,
-      });
-
-      if (error) throw error;
-
-      toast({
-        title: "Message sent!",
-        description: "Thanks for reaching out. I'll get back to you soon!",
-      });
-      
-      setFormData({ name: "", email: "", message: "" });
-    } catch (error: any) {
-      console.error("Error sending message:", error);
-      toast({
-        title: "Error sending message",
-        description: "Please try again or email me directly.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   const copyEmail = async () => {
     await navigator.clipboard.writeText("dharsand2006@gmail.com");
     setCopied(true);
@@ -59,6 +24,12 @@ const Contact = () => {
       description: "dharsand2006@gmail.com has been copied to clipboard.",
     });
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleMarqueeClick = () => {
+    const subject = encodeURIComponent("Lets work Together!");
+    const body = encodeURIComponent("Hello, I think we need you to work on/collaborate this particular product... Reach out as soon as you can.");
+    window.location.href = `mailto:dharsand2006@gmail.com?subject=${subject}&body=${body}`;
   };
 
   // Character animation for title
@@ -78,19 +49,7 @@ const Contact = () => {
   const line1 = "LET'S WORK";
   const line2 = "TOGETHER";
 
-  // Form field animations
-  const fieldVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: 0.3 + i * 0.1,
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1] as const,
-      },
-    }),
-  };
+  const marqueeText = "LET'S TALK — LET'S COLLABORATE — SAY HELLO — WANNA BE STARTING SOMETHING? — ";
 
   return (
     <section ref={sectionRef} id="contact" className="py-32 relative overflow-hidden">
@@ -251,105 +210,61 @@ const Contact = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right side - Contact Form with field animations */}
+          {/* Right side - Marquee CTA */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
+            className="flex items-center"
           >
-            <form onSubmit={handleSubmit} className="space-y-8">
-              <motion.div 
-                custom={0}
-                variants={fieldVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="space-y-2"
-              >
-                <label className="text-xs font-mono text-muted-foreground tracking-[0.2em] uppercase">
-                  Name
-                </label>
-                <Input
-                  required
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  placeholder="Your name"
-                  className="bg-transparent border-border border-0 border-b rounded-none px-0 h-14 focus-visible:ring-0 focus-visible:border-foreground transition-colors text-base"
-                />
-              </motion.div>
-
-              <motion.div 
-                custom={1}
-                variants={fieldVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="space-y-2"
-              >
-                <label className="text-xs font-mono text-muted-foreground tracking-[0.2em] uppercase">
-                  Email
-                </label>
-                <Input
-                  required
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  placeholder="your@email.com"
-                  className="bg-transparent border-border border-0 border-b rounded-none px-0 h-14 focus-visible:ring-0 focus-visible:border-foreground transition-colors text-base"
-                />
-              </motion.div>
-
-              <motion.div 
-                custom={2}
-                variants={fieldVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="space-y-2"
-              >
-                <label className="text-xs font-mono text-muted-foreground tracking-[0.2em] uppercase">
-                  Message
-                </label>
-                <Textarea
-                  required
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  placeholder="Tell me about your project..."
-                  className="bg-transparent border-border border-0 border-b rounded-none px-0 min-h-[180px] resize-none focus-visible:ring-0 focus-visible:border-foreground transition-colors text-base"
-                />
-              </motion.div>
-
+            <div className="w-full">
+              {/* Top line */}
+              <div className="border-t border-muted-foreground/30 mb-8" />
+              
+              {/* Marquee container */}
               <motion.div
-                custom={3}
-                variants={fieldVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
+                onClick={handleMarqueeClick}
+                className="cursor-pointer overflow-hidden py-8 group"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
               >
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="group w-full bg-transparent text-foreground border border-foreground hover:bg-foreground hover:text-background h-16 font-mono text-xs tracking-[0.2em] uppercase rounded-none transition-all duration-500 overflow-hidden relative"
+                <motion.div
+                  className="flex whitespace-nowrap"
+                  animate={{ x: ["0%", "-50%"] }}
+                  transition={{
+                    x: {
+                      repeat: Infinity,
+                      repeatType: "loop",
+                      duration: 15,
+                      ease: "linear",
+                    },
+                  }}
                 >
-                  <span className="relative z-10 flex items-center justify-center gap-3">
-                    {isSubmitting ? (
-                      <motion.span
-                        animate={{ opacity: [1, 0.5, 1] }}
-                        transition={{ duration: 1, repeat: Infinity }}
-                      >
-                        Sending...
-                      </motion.span>
-                    ) : (
-                      <>
-                        Send Message
-                        <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
-                      </>
-                    )}
-                  </span>
-                </Button>
+                  {[...Array(4)].map((_, i) => (
+                    <span
+                      key={i}
+                      className="text-[clamp(1.5rem,4vw,3rem)] font-bold tracking-[-0.02em] text-muted-foreground group-hover:text-orange-500 transition-colors duration-300 uppercase"
+                    >
+                      {marqueeText}
+                    </span>
+                  ))}
+                </motion.div>
               </motion.div>
-            </form>
+              
+              {/* Bottom line */}
+              <div className="border-b border-muted-foreground/30 mt-8" />
+              
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5 }}
+                className="text-xs font-mono text-muted-foreground/50 mt-6 text-center uppercase tracking-wider"
+              >
+                Click to send email
+              </motion.p>
+            </div>
           </motion.div>
         </div>
       </div>
