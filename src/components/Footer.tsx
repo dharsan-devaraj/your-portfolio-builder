@@ -38,7 +38,7 @@ const Footer = () => {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="relative px-6 py-3 border border-muted-foreground/30 overflow-hidden group"
+              className="relative px-6 py-3 border border-muted-foreground/30 overflow-hidden group rounded-full"
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
               whileHover={{ y: -2 }}
@@ -80,7 +80,7 @@ const Footer = () => {
           {/* Back to top button with same style */}
           <motion.button
             onClick={scrollToTop}
-            className="relative px-6 py-3 border border-muted-foreground/30 overflow-hidden group"
+            className="relative px-6 py-3 border border-muted-foreground/30 overflow-hidden group rounded-full"
             onMouseEnter={() => setHoveredIndex(99)}
             onMouseLeave={() => setHoveredIndex(null)}
             whileHover={{ y: -2 }}
