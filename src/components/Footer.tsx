@@ -52,22 +52,39 @@ const Footer = () => {
                 transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
               />
               
-              {/* Content with scroll up animation */}
+              {/* Content container with clipping */}
               <span className="relative z-10 flex items-center gap-2 overflow-hidden h-5">
+                {/* First text - scrolls up and out */}
                 <motion.span
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-2 absolute inset-0"
                   animate={{ 
-                    y: hoveredIndex === index ? [0, -24, 0] : 0 
+                    y: hoveredIndex === index ? "-100%" : "0%" 
                   }}
                   transition={{ 
-                    duration: 0.6, 
-                    ease: "easeInOut",
-                    repeat: hoveredIndex === index ? Infinity : 0,
-                    repeatDelay: 0.3
+                    duration: 0.3, 
+                    ease: [0.22, 1, 0.36, 1]
                   }}
                 >
-                  <link.icon className={`w-4 h-4 transition-colors duration-300 ${hoveredIndex === index ? 'text-black' : 'text-muted-foreground/60'}`} />
-                  <span className={`text-xs font-mono tracking-wider uppercase transition-colors duration-300 ${hoveredIndex === index ? 'text-black' : 'text-muted-foreground/60'}`}>
+                  <link.icon className="w-4 h-4 text-muted-foreground/60" />
+                  <span className="text-xs font-mono tracking-wider uppercase text-muted-foreground/60">
+                    {link.name}
+                  </span>
+                </motion.span>
+                
+                {/* Second text - enters from bottom */}
+                <motion.span
+                  className="flex items-center gap-2"
+                  initial={{ y: "100%" }}
+                  animate={{ 
+                    y: hoveredIndex === index ? "0%" : "100%" 
+                  }}
+                  transition={{ 
+                    duration: 0.3, 
+                    ease: [0.22, 1, 0.36, 1]
+                  }}
+                >
+                  <link.icon className="w-4 h-4 text-black" />
+                  <span className="text-xs font-mono tracking-wider uppercase text-black">
                     {link.name}
                   </span>
                 </motion.span>
@@ -92,20 +109,37 @@ const Footer = () => {
             />
             
             <span className="relative z-10 flex items-center gap-2 overflow-hidden h-5">
+              {/* First text - scrolls up and out */}
               <motion.span
-                className="flex items-center gap-2"
+                className="flex items-center gap-2 absolute inset-0"
                 animate={{ 
-                  y: hoveredIndex === 99 ? [0, -24, 0] : 0 
+                  y: hoveredIndex === 99 ? "-100%" : "0%" 
                 }}
                 transition={{ 
-                  duration: 0.6, 
-                  ease: "easeInOut",
-                  repeat: hoveredIndex === 99 ? Infinity : 0,
-                  repeatDelay: 0.3
+                  duration: 0.3, 
+                  ease: [0.22, 1, 0.36, 1]
                 }}
               >
-                <ArrowUp className={`w-4 h-4 transition-colors duration-300 ${hoveredIndex === 99 ? 'text-black' : 'text-muted-foreground/60'}`} />
-                <span className={`text-xs font-mono tracking-wider uppercase transition-colors duration-300 ${hoveredIndex === 99 ? 'text-black' : 'text-muted-foreground/60'}`}>
+                <ArrowUp className="w-4 h-4 text-muted-foreground/60" />
+                <span className="text-xs font-mono tracking-wider uppercase text-muted-foreground/60">
+                  Back to Top
+                </span>
+              </motion.span>
+              
+              {/* Second text - enters from bottom */}
+              <motion.span
+                className="flex items-center gap-2"
+                initial={{ y: "100%" }}
+                animate={{ 
+                  y: hoveredIndex === 99 ? "0%" : "100%" 
+                }}
+                transition={{ 
+                  duration: 0.3, 
+                  ease: [0.22, 1, 0.36, 1]
+                }}
+              >
+                <ArrowUp className="w-4 h-4 text-black" />
+                <span className="text-xs font-mono tracking-wider uppercase text-black">
                   Back to Top
                 </span>
               </motion.span>
