@@ -11,7 +11,7 @@ const socialLinks = [
   { 
     name: "GitHub", 
     icon: Github, 
-    href: "https://github.com" 
+    href: "https://github.com/dharsan678" 
   },
   { 
     name: "Instagram", 
@@ -103,12 +103,9 @@ const Footer = () => {
         </div>
 
         {/* Bottom info */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-8 border-t border-border/20">
+        <div className="flex items-center justify-center pt-8 border-t border-border/20">
           <p className="text-[10px] font-mono text-muted-foreground/50 tracking-wider uppercase">
             © 2024 — Present DHARSAN D
-          </p>
-          <p className="text-[10px] font-mono text-muted-foreground/50 tracking-wider uppercase">
-            Built with React
           </p>
         </div>
       </div>
