@@ -1,5 +1,5 @@
 import { Github, Linkedin, Instagram, ArrowUp } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useState } from "react";
 
 const socialLinks = [
@@ -44,7 +44,7 @@ const Footer = () => {
               whileHover={{ y: -2 }}
               transition={{ duration: 0.2 }}
             >
-              {/* Background fill animation */}
+              {/* Background fill animation - slides up from bottom */}
               <motion.div
                 className="absolute inset-0 bg-orange-500"
                 initial={{ y: "100%" }}
@@ -52,28 +52,26 @@ const Footer = () => {
                 transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
               />
               
-              {/* Content */}
-              <span className="relative z-10 flex items-center gap-2">
-                <link.icon className={`w-4 h-4 transition-colors duration-300 ${hoveredIndex === index ? 'text-background' : 'text-muted-foreground/60'}`} />
-                <span className={`text-xs font-mono tracking-wider uppercase transition-colors duration-300 ${hoveredIndex === index ? 'text-background' : 'text-muted-foreground/60'}`}>
-                  {link.name}
-                </span>
+              {/* Content with scroll up animation */}
+              <span className="relative z-10 flex items-center gap-2 overflow-hidden h-5">
+                <motion.span
+                  className="flex items-center gap-2"
+                  animate={{ 
+                    y: hoveredIndex === index ? [0, -24, 0] : 0 
+                  }}
+                  transition={{ 
+                    duration: 0.6, 
+                    ease: "easeInOut",
+                    repeat: hoveredIndex === index ? Infinity : 0,
+                    repeatDelay: 0.3
+                  }}
+                >
+                  <link.icon className={`w-4 h-4 transition-colors duration-300 ${hoveredIndex === index ? 'text-black' : 'text-muted-foreground/60'}`} />
+                  <span className={`text-xs font-mono tracking-wider uppercase transition-colors duration-300 ${hoveredIndex === index ? 'text-black' : 'text-muted-foreground/60'}`}>
+                    {link.name}
+                  </span>
+                </motion.span>
               </span>
-
-              {/* Page up indicator on hover */}
-              <AnimatePresence>
-                {hoveredIndex === index && (
-                  <motion.div
-                    className="absolute right-2 top-1/2 -translate-y-1/2"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <ArrowUp className="w-3 h-3 text-background" />
-                  </motion.div>
-                )}
-              </AnimatePresence>
             </motion.a>
           ))}
 
@@ -93,11 +91,24 @@ const Footer = () => {
               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             />
             
-            <span className="relative z-10 flex items-center gap-2">
-              <ArrowUp className={`w-4 h-4 transition-colors duration-300 ${hoveredIndex === 99 ? 'text-background' : 'text-muted-foreground/60'}`} />
-              <span className={`text-xs font-mono tracking-wider uppercase transition-colors duration-300 ${hoveredIndex === 99 ? 'text-background' : 'text-muted-foreground/60'}`}>
-                Back to Top
-              </span>
+            <span className="relative z-10 flex items-center gap-2 overflow-hidden h-5">
+              <motion.span
+                className="flex items-center gap-2"
+                animate={{ 
+                  y: hoveredIndex === 99 ? [0, -24, 0] : 0 
+                }}
+                transition={{ 
+                  duration: 0.6, 
+                  ease: "easeInOut",
+                  repeat: hoveredIndex === 99 ? Infinity : 0,
+                  repeatDelay: 0.3
+                }}
+              >
+                <ArrowUp className={`w-4 h-4 transition-colors duration-300 ${hoveredIndex === 99 ? 'text-black' : 'text-muted-foreground/60'}`} />
+                <span className={`text-xs font-mono tracking-wider uppercase transition-colors duration-300 ${hoveredIndex === 99 ? 'text-black' : 'text-muted-foreground/60'}`}>
+                  Back to Top
+                </span>
+              </motion.span>
             </span>
           </motion.button>
         </div>
