@@ -59,10 +59,10 @@ const Skills = () => {
             className="border-b border-muted-foreground/20 group cursor-default"
           >
             <motion.div
-              className="py-8 md:py-10 px-4 md:px-8 transition-colors duration-300"
+              className="py-12 md:py-16 px-4 md:px-8 transition-colors duration-300"
             >
               <motion.p
-                className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-muted-foreground/50 group-hover:text-orange-500 transition-colors duration-300 whitespace-nowrap uppercase tracking-tight"
+                className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-muted-foreground/50 group-hover:text-orange-500 transition-colors duration-300 whitespace-nowrap uppercase tracking-wide"
               >
                 {line}
               </motion.p>
