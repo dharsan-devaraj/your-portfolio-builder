@@ -38,7 +38,7 @@ const Hero = () => {
   };
 
   return (
-    <section ref={containerRef} className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-background pt-20">
+    <section ref={containerRef} className="relative min-h-[100vh] flex flex-col justify-start overflow-hidden bg-background pt-16 pb-8">
       {/* Subtle grid background */}
       <div 
         className="absolute inset-0 opacity-[0.02]"
@@ -49,12 +49,12 @@ const Hero = () => {
         }}
       />
 
-      <div className="container relative z-10 px-6 flex-1 flex flex-col justify-center">
+      <div className="container relative z-10 px-6 flex-1 flex flex-col">
         <div className="max-w-full mx-auto w-full">
           {/* Main Title - FULL—STACK on first line, DEVELOPER on second */}
-          <div className="mb-8">
+          <div className="mb-4">
             {/* FULL — STACK line */}
-            <h1 className="text-[clamp(4rem,15vw,12rem)] font-bold leading-[0.9] tracking-[-0.03em] overflow-hidden whitespace-nowrap">
+            <h1 className="text-[clamp(5rem,18vw,14rem)] font-bold leading-[0.85] tracking-[-0.03em] overflow-visible whitespace-nowrap">
               <span className="flex items-center justify-start">
                 <motion.span 
                   style={{ x: fullX }}
@@ -68,7 +68,6 @@ const Hero = () => {
                       initial="hidden"
                       animate="visible"
                       className="inline-block text-muted-foreground/50 hover:text-muted-foreground/80 transition-colors duration-300 cursor-default"
-                      style={{ transform: "scaleY(1.2)" }}
                     >
                       {char}
                     </motion.span>
@@ -93,7 +92,6 @@ const Hero = () => {
                       initial="hidden"
                       animate="visible"
                       className="inline-block text-muted-foreground/50 hover:text-muted-foreground/80 transition-colors duration-300 cursor-default"
-                      style={{ transform: "scaleY(1.2)" }}
                     >
                       {char}
                     </motion.span>
@@ -102,49 +100,66 @@ const Hero = () => {
               </span>
             </h1>
             
-            {/* DEVELOPER on separate line - vertically stretched */}
-            <h1 className="text-[clamp(4rem,15vw,12rem)] font-bold leading-[0.9] tracking-[-0.03em] overflow-hidden whitespace-nowrap">
-              <span className="block" style={{ transform: "scaleY(1.3)", transformOrigin: "top" }}>
-                {"DEVELOPER".split("").map((char, i) => (
-                  <motion.span
-                    key={i}
-                    custom={i + 10}
-                    variants={charVariants}
-                    initial="hidden"
-                    animate="visible"
-                    className="inline-block text-muted-foreground/50 hover:text-muted-foreground/80 transition-colors duration-300 cursor-default"
-                  >
-                    {char}
-                  </motion.span>
-                ))}
-              </span>
-            </h1>
-          </div>
+            {/* DEVELOPER and About side by side */}
+            <div className="flex items-end justify-between gap-4">
+              <h1 className="text-[clamp(5rem,18vw,14rem)] font-bold leading-[1] tracking-[-0.03em] overflow-visible whitespace-nowrap pb-2">
+                <span className="block">
+                  {"DEVELOPER".split("").map((char, i) => (
+                    <motion.span
+                      key={i}
+                      custom={i + 10}
+                      variants={charVariants}
+                      initial="hidden"
+                      animate="visible"
+                      className="inline-block text-muted-foreground/50 hover:text-muted-foreground/80 transition-colors duration-300 cursor-default"
+                    >
+                      {char}
+                    </motion.span>
+                  ))}
+                </span>
+              </h1>
 
-          {/* About Section - same page */}
-          <motion.div
-            ref={aboutRef}
-            initial={{ opacity: 0, x: 60 }}
-            animate={isAboutInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            className="max-w-md ml-auto text-right mt-8"
-          >
-            <p className="text-[10px] font-mono text-muted-foreground/50 tracking-[0.2em] mb-3 uppercase">
-              About
-            </p>
-            <p className="text-muted-foreground/60 leading-relaxed text-sm hover:text-muted-foreground/80 transition-colors duration-300 cursor-default">
-              I am <span className="text-muted-foreground/80">DHARSAN D</span>, a passionate full-stack developer 
-              based in Chennai, India. Currently pursuing B.Tech ECE at <span className="text-muted-foreground/80">SRM University KTR</span>, 
-              I specialize in building scalable web applications, RESTful APIs, and modern user interfaces.
-            </p>
-          </motion.div>
+              {/* About Section - positioned next to DEVELOPER */}
+              <motion.div
+                ref={aboutRef}
+                initial={{ opacity: 0, x: 60 }}
+                animate={isAboutInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.8 }}
+                className="max-w-xs text-right pb-4 hidden md:block flex-shrink-0"
+              >
+                <p className="text-[10px] font-mono text-muted-foreground/50 tracking-[0.2em] mb-2 uppercase">
+                  About
+                </p>
+                <p className="text-muted-foreground/60 leading-relaxed text-xs hover:text-muted-foreground/80 transition-colors duration-300 cursor-default">
+                  I am <span className="text-muted-foreground/80">DHARSAN D</span>, a passionate full-stack developer 
+                  based in Chennai. Currently pursuing B.Tech ECE at <span className="text-muted-foreground/80">SRM University KTR</span>.
+                </p>
+              </motion.div>
+            </div>
+
+            {/* Mobile About Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+              className="max-w-md text-left mt-6 md:hidden"
+            >
+              <p className="text-[10px] font-mono text-muted-foreground/50 tracking-[0.2em] mb-2 uppercase">
+                About
+              </p>
+              <p className="text-muted-foreground/60 leading-relaxed text-sm hover:text-muted-foreground/80 transition-colors duration-300 cursor-default">
+                I am <span className="text-muted-foreground/80">DHARSAN D</span>, a passionate full-stack developer 
+                based in Chennai. Currently pursuing B.Tech ECE at <span className="text-muted-foreground/80">SRM University KTR</span>.
+              </p>
+            </motion.div>
+          </div>
 
           {/* Scroll indicator */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.5, duration: 0.6 }}
-            className="mt-16 flex items-center gap-3"
+            className="mt-auto pt-8 flex items-center gap-3"
           >
             <button
               onClick={() => scrollToSection("skills")}

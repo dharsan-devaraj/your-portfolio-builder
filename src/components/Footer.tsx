@@ -62,7 +62,7 @@ const Footer = () => {
             {[...Array(4)].map((_, i) => (
               <span
                 key={i}
-                className="text-[clamp(3rem,10vw,8rem)] font-bold tracking-[-0.02em] text-muted-foreground/50 group-hover:text-orange-500 transition-colors duration-300 uppercase whitespace-nowrap"
+                className="text-[clamp(2rem,6vw,5rem)] font-bold tracking-[-0.02em] text-muted-foreground/50 group-hover:text-orange-500 transition-colors duration-300 uppercase whitespace-nowrap inline-block"
               >
                 {marqueeText}
               </span>
