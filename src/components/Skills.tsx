@@ -62,7 +62,7 @@ const Skills = () => {
               className="py-8 md:py-10 px-4 md:px-8 transition-colors duration-300"
             >
               <motion.p
-                className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-muted-foreground/50 group-hover:text-orange-500 transition-colors duration-300 whitespace-nowrap uppercase tracking-tight"
+                className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-muted-foreground/50 group-hover:text-orange-500 transition-colors duration-300 whitespace-nowrap uppercase tracking-tight"
               >
                 {line}
               </motion.p>
@@ -93,7 +93,7 @@ const Skills = () => {
               viewport={{ once: true }}
               transition={{ delay: categoryIndex * 0.15, duration: 0.6 }}
             >
-              <h3 className="text-[10px] font-mono text-muted-foreground/50 mb-8 tracking-[0.2em] uppercase border-b border-border/50 pb-3 hover:text-orange-500 transition-colors duration-300 cursor-default">
+              <h3 className="text-sm font-mono text-muted-foreground/50 mb-8 tracking-[0.2em] uppercase border-b border-border/50 pb-3 transition-colors duration-300 cursor-default">
                 {category.title}
               </h3>
               <div className="space-y-4">
@@ -108,7 +108,7 @@ const Skills = () => {
                     <motion.span
                       whileHover={{ x: 15 }}
                       transition={{ duration: 0.3 }}
-                      className="text-xl md:text-2xl font-bold tracking-tight cursor-default inline-block text-muted-foreground/50 hover:text-orange-500 transition-colors duration-300"
+                      className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight cursor-default inline-block text-muted-foreground/50 hover:text-orange-500 transition-colors duration-300"
                     >
                       {skill}
                     </motion.span>
