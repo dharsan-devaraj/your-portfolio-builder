@@ -52,9 +52,9 @@ const Hero = () => {
       <div className="container relative z-10 px-6 flex-1 flex flex-col justify-center">
         <div className="max-w-full mx-auto w-full">
           {/* Main Title - FULL—STACK on first line, DEVELOPER on second */}
-          <div className="mb-12">
+          <div className="mb-8">
             {/* FULL — STACK line */}
-            <h1 className="text-[clamp(6rem,22vw,18rem)] font-bold leading-[0.85] tracking-[-0.03em] overflow-hidden whitespace-nowrap">
+            <h1 className="text-[clamp(4rem,15vw,12rem)] font-bold leading-[0.9] tracking-[-0.03em] overflow-hidden whitespace-nowrap">
               <span className="flex items-center justify-start">
                 <motion.span 
                   style={{ x: fullX }}
@@ -68,6 +68,7 @@ const Hero = () => {
                       initial="hidden"
                       animate="visible"
                       className="inline-block text-muted-foreground/50 hover:text-muted-foreground/80 transition-colors duration-300 cursor-default"
+                      style={{ transform: "scaleY(1.2)" }}
                     >
                       {char}
                     </motion.span>
@@ -92,6 +93,7 @@ const Hero = () => {
                       initial="hidden"
                       animate="visible"
                       className="inline-block text-muted-foreground/50 hover:text-muted-foreground/80 transition-colors duration-300 cursor-default"
+                      style={{ transform: "scaleY(1.2)" }}
                     >
                       {char}
                     </motion.span>
@@ -100,9 +102,9 @@ const Hero = () => {
               </span>
             </h1>
             
-            {/* DEVELOPER on separate line */}
-            <h1 className="text-[clamp(6rem,22vw,18rem)] font-bold leading-[0.85] tracking-[-0.03em] overflow-hidden -mt-2 whitespace-nowrap">
-              <span className="block">
+            {/* DEVELOPER on separate line - vertically stretched */}
+            <h1 className="text-[clamp(4rem,15vw,12rem)] font-bold leading-[0.9] tracking-[-0.03em] overflow-hidden whitespace-nowrap">
+              <span className="block" style={{ transform: "scaleY(1.3)", transformOrigin: "top" }}>
                 {"DEVELOPER".split("").map((char, i) => (
                   <motion.span
                     key={i}

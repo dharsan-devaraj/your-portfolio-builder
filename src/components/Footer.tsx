@@ -22,7 +22,7 @@ const socialLinks = [
 
 const Footer = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const marqueeText = "LET'S TALK — LET'S COLLABORATE — SAY HELLO — WANNA BE STARTING SOMETHING? — ";
+  const marqueeText = "LET'S TALK — LET'S COLLABORATE — SAY HELLO — WANNA BE STARTING SOMETHING? —  ";
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -62,7 +62,7 @@ const Footer = () => {
             {[...Array(4)].map((_, i) => (
               <span
                 key={i}
-                className="text-[clamp(2.5rem,8vw,6rem)] font-bold tracking-[-0.02em] text-muted-foreground/50 group-hover:text-orange-500 transition-colors duration-300 uppercase"
+                className="text-[clamp(3rem,10vw,8rem)] font-bold tracking-[-0.02em] text-muted-foreground/50 group-hover:text-orange-500 transition-colors duration-300 uppercase whitespace-nowrap"
               >
                 {marqueeText}
               </span>
