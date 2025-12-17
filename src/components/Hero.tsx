@@ -54,7 +54,7 @@ const Hero = () => {
           {/* Main Title - FULL—STACK on first line, DEVELOPER on second */}
           <div className="mb-12">
             {/* FULL — STACK line */}
-            <h1 className="text-[clamp(5rem,18vw,14rem)] font-bold leading-[0.85] tracking-[-0.03em] overflow-hidden whitespace-nowrap">
+            <h1 className="text-[clamp(6rem,22vw,18rem)] font-bold leading-[0.85] tracking-[-0.03em] overflow-hidden whitespace-nowrap">
               <span className="flex items-center justify-start">
                 <motion.span 
                   style={{ x: fullX }}
@@ -101,7 +101,7 @@ const Hero = () => {
             </h1>
             
             {/* DEVELOPER on separate line */}
-            <h1 className="text-[clamp(5rem,18vw,14rem)] font-bold leading-[0.85] tracking-[-0.03em] overflow-hidden -mt-2 whitespace-nowrap">
+            <h1 className="text-[clamp(6rem,22vw,18rem)] font-bold leading-[0.85] tracking-[-0.03em] overflow-hidden -mt-2 whitespace-nowrap">
               <span className="block">
                 {"DEVELOPER".split("").map((char, i) => (
                   <motion.span
