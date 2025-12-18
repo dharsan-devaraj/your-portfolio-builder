@@ -100,57 +100,41 @@ const Hero = () => {
               </span>
             </h1>
             
-            {/* DEVELOPER and About side by side */}
-            <div className="flex items-end justify-between gap-4">
-              <h1 className="text-[clamp(5rem,18vw,14rem)] font-bold leading-[1] tracking-[-0.03em] overflow-visible whitespace-nowrap pb-2">
-                <span className="block">
-                  {"DEVELOPER".split("").map((char, i) => (
-                    <motion.span
-                      key={i}
-                      custom={i + 10}
-                      variants={charVariants}
-                      initial="hidden"
-                      animate="visible"
-                      className="inline-block text-muted-foreground/50 hover:text-muted-foreground/80 transition-colors duration-300 cursor-default"
-                    >
-                      {char}
-                    </motion.span>
-                  ))}
-                </span>
-              </h1>
+            {/* DEVELOPER */}
+            <h1 className="text-[clamp(5rem,18vw,14rem)] font-bold leading-[0.9] tracking-[-0.03em] overflow-visible whitespace-nowrap">
+              <span className="block">
+                {"DEVELOPER".split("").map((char, i) => (
+                  <motion.span
+                    key={i}
+                    custom={i + 10}
+                    variants={charVariants}
+                    initial="hidden"
+                    animate="visible"
+                    className="inline-block text-muted-foreground/50 hover:text-muted-foreground/80 transition-colors duration-300 cursor-default"
+                  >
+                    {char}
+                  </motion.span>
+                ))}
+              </span>
+            </h1>
 
-              {/* About Section - positioned next to DEVELOPER */}
-              <motion.div
-                ref={aboutRef}
-                initial={{ opacity: 0, x: 60 }}
-                animate={isAboutInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.8 }}
-                className="max-w-xs text-right pb-4 hidden md:block flex-shrink-0"
-              >
-                <p className="text-[10px] font-mono text-muted-foreground/50 tracking-[0.2em] mb-2 uppercase">
+            {/* About Section - Full width below DEVELOPER */}
+            <motion.div
+              ref={aboutRef}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isAboutInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.8 }}
+              className="w-full flex justify-center mt-8"
+            >
+              <div className="max-w-2xl text-center">
+                <p className="text-[10px] font-mono text-muted-foreground/50 tracking-[0.3em] mb-3 uppercase">
                   About
                 </p>
-                <p className="text-muted-foreground/60 leading-relaxed text-xs hover:text-muted-foreground/80 transition-colors duration-300 cursor-default">
+                <p className="text-muted-foreground/60 leading-relaxed text-sm md:text-base hover:text-muted-foreground/80 transition-colors duration-300 cursor-default">
                   I am <span className="text-muted-foreground/80">DHARSAN D</span>, a passionate full-stack developer 
                   based in Chennai. Currently pursuing B.Tech ECE at <span className="text-muted-foreground/80">SRM University KTR</span>.
                 </p>
-              </motion.div>
-            </div>
-
-            {/* Mobile About Section */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              className="max-w-md text-left mt-6 md:hidden"
-            >
-              <p className="text-[10px] font-mono text-muted-foreground/50 tracking-[0.2em] mb-2 uppercase">
-                About
-              </p>
-              <p className="text-muted-foreground/60 leading-relaxed text-sm hover:text-muted-foreground/80 transition-colors duration-300 cursor-default">
-                I am <span className="text-muted-foreground/80">DHARSAN D</span>, a passionate full-stack developer 
-                based in Chennai. Currently pursuing B.Tech ECE at <span className="text-muted-foreground/80">SRM University KTR</span>.
-              </p>
+              </div>
             </motion.div>
           </div>
 
