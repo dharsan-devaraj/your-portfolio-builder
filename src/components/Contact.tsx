@@ -64,15 +64,16 @@ const Contact = () => {
           </h2>
         </motion.div>
 
-        <div className="max-w-2xl">
-          {/* Large CTA with character animation */}
+        {/* Full width grid layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          {/* Left side - Large CTA */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
           >
-            <h3 className="text-[clamp(3rem,10vw,8rem)] font-bold leading-[0.85] tracking-[-0.04em] mb-10 overflow-hidden">
+            <h3 className="text-[clamp(3rem,8vw,6rem)] font-bold leading-[0.85] tracking-[-0.04em] mb-10 overflow-hidden">
               <span className="block">
                 {line1.split("").map((char, i) => (
                   <motion.span
@@ -114,11 +115,14 @@ const Contact = () => {
             >
               Have a project in mind or want to collaborate? Feel free to reach out!
             </motion.p>
+          </motion.div>
 
-            {/* Contact links with hover animations */}
+          {/* Right side - Contact info & Terminal */}
+          <div className="space-y-8">
+            {/* Contact links */}
             <div className="space-y-0">
               <motion.button
-                initial={{ opacity: 0, x: -30 }}
+                initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.5, duration: 0.5 }}
@@ -142,7 +146,7 @@ const Contact = () => {
               </motion.button>
               
               <motion.a
-                initial={{ opacity: 0, x: -30 }}
+                initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.6, duration: 0.5 }}
@@ -159,7 +163,7 @@ const Contact = () => {
               </motion.a>
               
               <motion.div
-                initial={{ opacity: 0, x: -30 }}
+                initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.7, duration: 0.5 }}
@@ -171,13 +175,13 @@ const Contact = () => {
               </motion.div>
             </div>
 
-            {/* Terminal style with typing animation */}
+            {/* Terminal style */}
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.8, duration: 0.6 }}
-              className="mt-14 p-6 bg-secondary/30 border border-border font-mono text-sm"
+              className="p-6 bg-secondary/30 border border-border font-mono text-sm"
             >
               <div className="flex items-center gap-2 mb-4">
                 <div className="w-3 h-3 rounded-full bg-muted-foreground/20 hover:bg-foreground transition-colors" />
@@ -200,7 +204,7 @@ const Contact = () => {
                 </p>
               </div>
             </motion.div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
