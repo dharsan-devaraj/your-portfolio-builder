@@ -63,6 +63,7 @@ const Skills = () => {
             >
               <motion.p
                 className="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-muted-foreground/50 group-hover:text-orange-500 transition-colors duration-300 whitespace-nowrap uppercase tracking-wide"
+                style={{ transform: 'scaleY(1.25)', transformOrigin: 'center' }}
               >
                 {line}
               </motion.p>

@@ -59,7 +59,7 @@ const Contact = () => {
           style={{ x: titleX, opacity: titleOpacity }}
           className="flex items-baseline justify-between border-b border-border pb-6 mb-16"
         >
-          <h2 className="text-sm font-mono tracking-[0.3em] text-muted-foreground uppercase">
+          <h2 className="text-base font-mono tracking-[0.3em] text-muted-foreground/60 uppercase">
             Get In Touch
           </h2>
         </motion.div>
@@ -128,9 +128,9 @@ const Contact = () => {
                 transition={{ delay: 0.5, duration: 0.5 }}
                 onClick={copyEmail}
                 whileHover={{ x: 10 }}
-                className="w-full flex items-center justify-between py-5 border-b border-border group text-left"
+                className="w-full flex items-center justify-between py-6 border-b border-border group text-left"
               >
-                <span className="text-base font-mono text-muted-foreground/60 group-hover:text-muted-foreground transition-colors duration-300">
+                <span className="text-lg font-mono text-muted-foreground/60 group-hover:text-muted-foreground/80 transition-colors duration-300">
                   dharsand2006@gmail.com
                 </span>
                 <div className="flex items-center gap-3">
@@ -154,12 +154,12 @@ const Contact = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ x: 10 }}
-                className="flex items-center justify-between py-5 border-b border-border group"
+                className="flex items-center justify-between py-6 border-b border-border group"
               >
-                <span className="text-base font-mono text-muted-foreground/60 group-hover:text-muted-foreground transition-colors duration-300">
+                <span className="text-lg font-mono text-muted-foreground/60 group-hover:text-muted-foreground/80 transition-colors duration-300">
                   LinkedIn
                 </span>
-                <ArrowUpRight className="w-5 h-5 text-muted-foreground/60 group-hover:text-muted-foreground group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" />
+                <ArrowUpRight className="w-5 h-5 text-muted-foreground/50 group-hover:text-muted-foreground/70 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" />
               </motion.a>
               
               <motion.div
@@ -167,9 +167,9 @@ const Contact = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.7, duration: 0.5 }}
-                className="flex items-center justify-between py-5 border-b border-border"
+                className="flex items-center justify-between py-6 border-b border-border"
               >
-                <span className="text-base font-mono text-muted-foreground/60">
+                <span className="text-lg font-mono text-muted-foreground/60">
                   SRM University, KTR
                 </span>
               </motion.div>

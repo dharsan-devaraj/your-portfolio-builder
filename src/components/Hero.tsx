@@ -56,7 +56,7 @@ const Hero = () => {
         {/* Main Title Section */}
         <div className="flex-1 flex flex-col justify-center">
           {/* FULL — STACK line */}
-          <h1 className="text-[clamp(5rem,18vw,14rem)] font-bold leading-[0.85] tracking-[-0.03em] overflow-visible whitespace-nowrap">
+          <h1 className="text-[clamp(5rem,18vw,14rem)] font-bold leading-[0.85] tracking-[-0.03em] overflow-visible whitespace-nowrap" style={{ transform: 'scaleY(1.3)', transformOrigin: 'top' }}>
             <span className="flex items-center justify-start">
               <motion.span 
                 style={{ x: fullX }}
@@ -103,7 +103,7 @@ const Hero = () => {
           </h1>
           
           {/* DEVELOPER */}
-          <h1 className="text-[clamp(5rem,18vw,14rem)] font-bold leading-[0.9] tracking-[-0.03em] overflow-visible whitespace-nowrap">
+          <h1 className="text-[clamp(5rem,18vw,14rem)] font-bold leading-[0.9] tracking-[-0.03em] overflow-visible whitespace-nowrap mt-4" style={{ transform: 'scaleY(1.3)', transformOrigin: 'top' }}>
             <span className="block">
               {"DEVELOPER".split("").map((char, i) => (
                 <motion.span
@@ -159,12 +159,12 @@ const Hero = () => {
             initial={{ opacity: 0, x: 60 }}
             animate={isAboutInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.8 }}
-            className="max-w-xs text-right"
+            className="max-w-sm text-right"
           >
-            <p className="text-[10px] font-mono text-muted-foreground/50 tracking-[0.2em] mb-2 uppercase">
+            <p className="text-xs font-mono text-muted-foreground/50 tracking-[0.2em] mb-3 uppercase">
               About
             </p>
-            <p className="text-muted-foreground/60 leading-relaxed text-xs hover:text-muted-foreground/80 transition-colors duration-300 cursor-default">
+            <p className="text-muted-foreground/60 leading-relaxed text-sm md:text-base hover:text-muted-foreground/80 transition-colors duration-300 cursor-default">
               I am <span className="text-muted-foreground/80">DHARSAN D</span>, a passionate full-stack developer 
               based in Chennai. Currently pursuing B.Tech ECE at <span className="text-muted-foreground/80">SRM University KTR</span>.
             </p>
