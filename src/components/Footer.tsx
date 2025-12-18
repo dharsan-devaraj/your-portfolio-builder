@@ -36,63 +36,84 @@ const Footer = () => {
 
   return (
     <footer className="py-12 border-t border-border/30">
-      <div className="container px-0">
-        {/* Top line */}
-        <div className="border-t border-muted-foreground/30" />
+      <div className="container px-4 md:px-6">
+        {/* Top info row - symmetric */}
+        <div className="grid grid-cols-3 items-center py-8 border-b border-muted-foreground/20">
+          <div className="text-left">
+            <p className="text-xs font-mono text-muted-foreground/50 tracking-wider uppercase">Email</p>
+            <a href="mailto:dharsand2006@gmail.com" className="text-sm text-muted-foreground/70 hover:text-orange-500 transition-colors">
+              dharsand2006@gmail.com
+            </a>
+          </div>
+          <div className="text-center">
+            <p className="text-xs font-mono text-muted-foreground/50 tracking-wider uppercase">Location</p>
+            <p className="text-sm text-muted-foreground/70">Chennai, India</p>
+          </div>
+          <div className="text-right">
+            <p className="text-xs font-mono text-muted-foreground/50 tracking-wider uppercase">University</p>
+            <p className="text-sm text-muted-foreground/70">SRM University KTR</p>
+          </div>
+        </div>
         
-        {/* Marquee - Full width, above buttons */}
+        {/* Marquee - Full width */}
         <motion.div
           onClick={handleMarqueeClick}
-          className="cursor-pointer overflow-hidden py-10 group w-full"
+          className="cursor-pointer overflow-hidden py-8 group w-full border-b border-muted-foreground/20"
           whileHover={{ scale: 1.01 }}
           transition={{ duration: 0.2 }}
         >
           <motion.div
-            className="flex whitespace-nowrap"
+            className="flex whitespace-nowrap justify-center"
             animate={{ x: ["0%", "-50%"] }}
             transition={{
               x: {
                 repeat: Infinity,
                 repeatType: "loop",
-                duration: 12,
+                duration: 10,
                 ease: "linear",
               },
             }}
           >
-            {[...Array(4)].map((_, i) => (
+            {[...Array(6)].map((_, i) => (
               <span
                 key={i}
-                className="text-[clamp(2rem,6vw,5rem)] font-bold tracking-[-0.02em] text-muted-foreground/50 group-hover:text-orange-500 transition-colors duration-300 uppercase whitespace-nowrap inline-block"
+                className="text-[clamp(2.5rem,8vw,6rem)] font-bold tracking-[-0.02em] text-muted-foreground/40 group-hover:text-orange-500 transition-colors duration-300 uppercase whitespace-nowrap inline-block px-4"
               >
                 {marqueeText}
               </span>
             ))}
           </motion.div>
         </motion.div>
-        
-        {/* Bottom line */}
-        <div className="border-b border-muted-foreground/30 mb-10" />
 
-        {/* Social Buttons Row */}
-        <div className="flex flex-wrap items-center justify-center gap-4 mb-10 px-6">
+        {/* Social Buttons Row - Centered */}
+        <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6 py-10">
           {socialLinks.map((link, index) => (
             <motion.a
               key={link.name}
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="relative px-8 py-4 border border-muted-foreground/30 overflow-hidden group rounded-full"
+              className="relative px-6 md:px-10 py-4 border border-muted-foreground/30 overflow-hidden group rounded-full"
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
-              whileHover={{ y: -2 }}
-              transition={{ duration: 0.15 }}
+              whileHover={{ y: -4, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.15, ease: "easeOut" }}
             >
               {/* Background fill animation - slides up from bottom */}
               <motion.div
                 className="absolute inset-0 bg-orange-500"
                 initial={{ y: "100%" }}
                 animate={{ y: hoveredIndex === index ? "0%" : "100%" }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
+                transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+              />
+              
+              {/* Glow effect */}
+              <motion.div
+                className="absolute inset-0 bg-orange-500/20 blur-xl"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: hoveredIndex === index ? 1 : 0 }}
+                transition={{ duration: 0.3 }}
               />
               
               {/* Content container with clipping */}
@@ -101,12 +122,10 @@ const Footer = () => {
                 <motion.span
                   className="flex items-center gap-2 absolute inset-0"
                   animate={{ 
-                    y: hoveredIndex === index ? "-100%" : "0%" 
+                    y: hoveredIndex === index ? "-100%" : "0%",
+                    opacity: hoveredIndex === index ? 0 : 1
                   }}
-                  transition={{ 
-                    duration: 0.2, 
-                    ease: "easeOut"
-                  }}
+                  transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
                 >
                   <link.icon className="w-5 h-5 text-muted-foreground/60" />
                   <span className="text-sm font-mono tracking-wider uppercase text-muted-foreground/60">
@@ -117,17 +136,15 @@ const Footer = () => {
                 {/* Second text - enters from bottom */}
                 <motion.span
                   className="flex items-center gap-2"
-                  initial={{ y: "100%" }}
+                  initial={{ y: "100%", opacity: 0 }}
                   animate={{ 
-                    y: hoveredIndex === index ? "0%" : "100%" 
+                    y: hoveredIndex === index ? "0%" : "100%",
+                    opacity: hoveredIndex === index ? 1 : 0
                   }}
-                  transition={{ 
-                    duration: 0.2, 
-                    ease: "easeOut"
-                  }}
+                  transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
                 >
                   <link.icon className="w-5 h-5 text-black" />
-                  <span className="text-sm font-mono tracking-wider uppercase text-black">
+                  <span className="text-sm font-mono tracking-wider uppercase text-black font-semibold">
                     {link.name}
                   </span>
                 </motion.span>
@@ -138,30 +155,35 @@ const Footer = () => {
           {/* Back to top button with same style */}
           <motion.button
             onClick={scrollToTop}
-            className="relative px-8 py-4 border border-muted-foreground/30 overflow-hidden group rounded-full"
+            className="relative px-6 md:px-10 py-4 border border-muted-foreground/30 overflow-hidden group rounded-full"
             onMouseEnter={() => setHoveredIndex(99)}
             onMouseLeave={() => setHoveredIndex(null)}
-            whileHover={{ y: -2 }}
-            transition={{ duration: 0.15 }}
+            whileHover={{ y: -4, scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ duration: 0.15, ease: "easeOut" }}
           >
             <motion.div
               className="absolute inset-0 bg-orange-500"
               initial={{ y: "100%" }}
               animate={{ y: hoveredIndex === 99 ? "0%" : "100%" }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
+              transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+            />
+            
+            <motion.div
+              className="absolute inset-0 bg-orange-500/20 blur-xl"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: hoveredIndex === 99 ? 1 : 0 }}
+              transition={{ duration: 0.3 }}
             />
             
             <span className="relative z-10 flex items-center gap-2 overflow-hidden h-6">
-              {/* First text - scrolls up and out */}
               <motion.span
                 className="flex items-center gap-2 absolute inset-0"
                 animate={{ 
-                  y: hoveredIndex === 99 ? "-100%" : "0%" 
+                  y: hoveredIndex === 99 ? "-100%" : "0%",
+                  opacity: hoveredIndex === 99 ? 0 : 1
                 }}
-                transition={{ 
-                  duration: 0.2, 
-                  ease: "easeOut"
-                }}
+                transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
               >
                 <ArrowUp className="w-5 h-5 text-muted-foreground/60" />
                 <span className="text-sm font-mono tracking-wider uppercase text-muted-foreground/60">
@@ -169,20 +191,17 @@ const Footer = () => {
                 </span>
               </motion.span>
               
-              {/* Second text - enters from bottom */}
               <motion.span
                 className="flex items-center gap-2"
-                initial={{ y: "100%" }}
+                initial={{ y: "100%", opacity: 0 }}
                 animate={{ 
-                  y: hoveredIndex === 99 ? "0%" : "100%" 
+                  y: hoveredIndex === 99 ? "0%" : "100%",
+                  opacity: hoveredIndex === 99 ? 1 : 0
                 }}
-                transition={{ 
-                  duration: 0.2, 
-                  ease: "easeOut"
-                }}
+                transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
               >
                 <ArrowUp className="w-5 h-5 text-black" />
-                <span className="text-sm font-mono tracking-wider uppercase text-black">
+                <span className="text-sm font-mono tracking-wider uppercase text-black font-semibold">
                   Back to Top
                 </span>
               </motion.span>
@@ -190,8 +209,8 @@ const Footer = () => {
           </motion.button>
         </div>
 
-        {/* Bottom info */}
-        <div className="flex items-center justify-center pt-8 border-t border-border/20 px-6">
+        {/* Bottom copyright - centered */}
+        <div className="flex items-center justify-center pt-6 border-t border-border/20">
           <p className="text-xs font-mono text-muted-foreground/50 tracking-wider uppercase">
             © 2024 — Present DHARSAN D
           </p>
