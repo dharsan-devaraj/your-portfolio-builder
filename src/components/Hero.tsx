@@ -1,21 +1,9 @@
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import { useRef } from "react";
 
 const Hero = () => {
   const containerRef = useRef<HTMLElement>(null);
-  const aboutRef = useRef<HTMLDivElement>(null);
-  const isAboutInView = useInView(aboutRef, { once: true, margin: "-100px" });
-  
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"],
-  });
-  
-  // Scroll-based word separation - FULL and STACK push apart
-  const fullX = useTransform(scrollYProgress, [0, 0.4], [0, -120]);
-  const stackX = useTransform(scrollYProgress, [0, 0.4], [0, 120]);
-  const dashWidth = useTransform(scrollYProgress, [0, 0.4], [80, 250]);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -25,43 +13,57 @@ const Hero = () => {
   };
 
   const charVariants = {
-    hidden: { opacity: 0, y: 80 },
+    hidden: { opacity: 0, y: 50 },
     visible: (i: number) => ({
       opacity: 1,
       y: 0,
       transition: {
-        delay: 0.3 + i * 0.03,
-        duration: 0.7,
+        delay: 0.2 + i * 0.025,
+        duration: 0.6,
         ease: [0.22, 1, 0.36, 1] as const,
       },
     }),
   };
 
+  const lineVariants = {
+    hidden: { scaleX: 0, opacity: 0 },
+    visible: {
+      scaleX: 1,
+      opacity: 1,
+      transition: {
+        delay: 0.5,
+        duration: 0.8,
+        ease: [0.22, 1, 0.36, 1] as const,
+      },
+    },
+  };
+
   return (
-    <section ref={containerRef} className="relative min-h-screen flex flex-col overflow-hidden bg-background">
+    <section 
+      ref={containerRef} 
+      className="relative min-h-screen flex items-center bg-background overflow-hidden"
+    >
       {/* Subtle grid background */}
       <div 
-        className="absolute inset-0 opacity-[0.02]"
+        className="absolute inset-0 opacity-[0.015]"
         style={{
           backgroundImage: `linear-gradient(hsl(var(--foreground)) 1px, transparent 1px),
                            linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)`,
-          backgroundSize: '60px 60px'
+          backgroundSize: '80px 80px'
         }}
       />
 
-      <div className="container relative z-10 px-6 flex-1 flex flex-col justify-between py-8">
-        {/* Top spacer */}
-        <div className="h-8" />
-        
-        {/* Main Title Section */}
-        <div className="flex-1 flex flex-col justify-center">
-          {/* FULL — STACK line */}
-          <h1 className="text-[clamp(5rem,18vw,14rem)] font-bold leading-[0.85] tracking-[-0.03em] overflow-visible whitespace-nowrap" style={{ transform: 'scaleY(1.3)', transformOrigin: 'top' }}>
-            <span className="flex items-center justify-start">
-              <motion.span 
-                style={{ x: fullX }}
-                className="inline-flex items-center"
-              >
+      <div className="container relative z-10 px-6 md:px-12 lg:px-16">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-12 lg:gap-8">
+          
+          {/* Left: Hero Heading */}
+          <div className="flex-1">
+            {/* FULL STACK line */}
+            <h1 
+              className="font-display font-black uppercase tracking-[-0.04em] leading-[0.9]"
+              style={{ fontSize: 'clamp(4rem, 10vw, 11rem)' }}
+            >
+              <span className="flex items-center">
                 {"FULL".split("").map((char, i) => (
                   <motion.span
                     key={i}
@@ -69,42 +71,48 @@ const Hero = () => {
                     variants={charVariants}
                     initial="hidden"
                     animate="visible"
-                    className="inline-block text-muted-foreground/50 hover:text-muted-foreground/80 transition-colors duration-300 cursor-default"
+                    className="inline-block text-muted-foreground/40 hover:text-muted-foreground/70 transition-colors duration-300 cursor-default"
                   >
                     {char}
                   </motion.span>
                 ))}
-              </motion.span>
-              
-              {/* Single expanding dash */}
-              <motion.span 
-                style={{ width: dashWidth }}
-                className="inline-block h-[0.06em] bg-muted-foreground/40 mx-3 md:mx-6 self-center flex-shrink-0"
-              />
-              
-              <motion.span 
-                style={{ x: stackX }}
-                className="inline-flex items-center"
-              >
+                
+                {/* Horizontal bar */}
+                <motion.span 
+                  variants={lineVariants}
+                  initial="hidden"
+                  animate="visible"
+                  className="inline-block bg-muted-foreground/30 mx-[0.15em] origin-left"
+                  style={{ 
+                    width: '12vw',
+                    height: '0.8vw',
+                    maxWidth: '140px',
+                    maxHeight: '10px',
+                    minWidth: '40px',
+                    minHeight: '4px',
+                  }}
+                />
+                
                 {"STACK".split("").map((char, i) => (
                   <motion.span
-                    key={i}
+                    key={i + 4}
                     custom={i + 5}
                     variants={charVariants}
                     initial="hidden"
                     animate="visible"
-                    className="inline-block text-muted-foreground/50 hover:text-muted-foreground/80 transition-colors duration-300 cursor-default"
+                    className="inline-block text-muted-foreground/40 hover:text-muted-foreground/70 transition-colors duration-300 cursor-default"
                   >
                     {char}
                   </motion.span>
                 ))}
-              </motion.span>
-            </span>
-          </h1>
-          
-          {/* DEVELOPER */}
-          <h1 className="text-[clamp(5rem,18vw,14rem)] font-bold leading-[0.9] tracking-[-0.03em] overflow-visible whitespace-nowrap mt-4" style={{ transform: 'scaleY(1.3)', transformOrigin: 'top' }}>
-            <span className="block">
+              </span>
+            </h1>
+            
+            {/* DEVELOPER */}
+            <h1 
+              className="font-display font-black uppercase tracking-[-0.04em] leading-[0.9] -mt-2 md:-mt-4"
+              style={{ fontSize: 'clamp(4rem, 10vw, 11rem)' }}
+            >
               {"DEVELOPER".split("").map((char, i) => (
                 <motion.span
                   key={i}
@@ -112,65 +120,65 @@ const Hero = () => {
                   variants={charVariants}
                   initial="hidden"
                   animate="visible"
-                  className="inline-block text-muted-foreground/50 hover:text-muted-foreground/80 transition-colors duration-300 cursor-default"
+                  className="inline-block text-muted-foreground/40 hover:text-muted-foreground/70 transition-colors duration-300 cursor-default"
                 >
                   {char}
                 </motion.span>
               ))}
-            </span>
-          </h1>
-        </div>
+            </h1>
 
-        {/* Bottom Section - Full Width with About on Right */}
-        <div className="flex items-end justify-between border-t border-muted-foreground/20 pt-8 mt-8">
-          {/* Left side - Scroll indicator */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.5, duration: 0.6 }}
-          >
-            <button
-              onClick={() => scrollToSection("skills")}
-              className="group flex items-center gap-3 text-muted-foreground/50 hover:text-muted-foreground transition-colors duration-300"
+            {/* Scroll indicator */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.5, duration: 0.6 }}
+              className="mt-12 md:mt-16"
             >
-              <span className="text-[10px] font-mono tracking-[0.15em] uppercase">Scroll down</span>
-              <motion.div
-                animate={{ y: [0, 6, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+              <button
+                onClick={() => scrollToSection("skills")}
+                className="group flex items-center gap-3 text-muted-foreground/40 hover:text-muted-foreground/70 transition-colors duration-300"
               >
-                <ArrowDown className="w-3 h-3" />
-              </motion.div>
-            </button>
-          </motion.div>
+                <span className="text-[10px] font-mono tracking-[0.2em] uppercase">Scroll</span>
+                <motion.div
+                  animate={{ y: [0, 5, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <ArrowDown className="w-3 h-3" />
+                </motion.div>
+              </button>
+            </motion.div>
+          </div>
 
-          {/* Center - Year */}
+          {/* Right: About Section */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.2, duration: 0.6 }}
-            className="text-center"
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="lg:max-w-[420px] lg:self-center"
           >
-            <p className="text-xs font-mono text-muted-foreground/40 tracking-wider">2024</p>
-          </motion.div>
-
-          {/* Right side - About */}
-          <motion.div
-            ref={aboutRef}
-            initial={{ opacity: 0, x: 60 }}
-            animate={isAboutInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            className="max-w-sm text-right"
-          >
-            <p className="text-xs font-mono text-muted-foreground/50 tracking-[0.2em] mb-3 uppercase">
+            <p className="text-[10px] font-mono text-muted-foreground/40 tracking-[0.25em] mb-4 uppercase">
               About
             </p>
-            <p className="text-muted-foreground/60 leading-relaxed text-sm md:text-base hover:text-muted-foreground/80 transition-colors duration-300 cursor-default">
-              I am <span className="text-muted-foreground/80">DHARSAN D</span>, a passionate full-stack developer 
-              based in Chennai. Currently pursuing B.Tech ECE at <span className="text-muted-foreground/80">SRM University KTR</span>.
+            <p 
+              className="text-muted-foreground/50 leading-[1.6] hover:text-muted-foreground/70 transition-colors duration-300 cursor-default"
+              style={{ fontSize: 'clamp(0.95rem, 1.1vw, 1.1rem)' }}
+            >
+              I am <span className="text-muted-foreground/70">DHARSAN D</span>, a passionate full-stack developer 
+              based in Chennai. Currently pursuing B.Tech ECE at{" "}
+              <span className="text-muted-foreground/70">SRM University KTR</span>. 
+              I craft digital experiences with clean code and creative solutions.
             </p>
           </motion.div>
         </div>
       </div>
+
+      {/* Bottom accent line */}
+      <motion.div
+        initial={{ scaleX: 0 }}
+        animate={{ scaleX: 1 }}
+        transition={{ delay: 1.2, duration: 1, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-muted-foreground/20 to-transparent origin-left"
+      />
     </section>
   );
 };
