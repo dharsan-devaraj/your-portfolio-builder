@@ -1,5 +1,4 @@
 import { Helmet } from "react-helmet-async";
-import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
@@ -10,22 +9,18 @@ const Index = () => {
   return (
     <>
       <Helmet>
-        <title>DHARSAN D | Full Stack Developer & Software Engineer</title>
+        <title>DHARSAN D | Full Stack Developer</title>
         <meta 
           name="description" 
-          content="DHARSAN D - Full Stack Developer and Software Engineer. B.Tech ECE student at SRM University KTR. Expert in React, Node.js, Python, and modern web technologies." 
+          content="DHARSAN D - Full Stack Developer based in Chennai. B.Tech ECE at SRM University KTR. Building digital experiences with clean code." 
         />
-        <meta name="keywords" content="DHARSAN D, Full Stack Developer, Software Engineer, React, Node.js, Python, SRM University" />
+        <meta name="keywords" content="DHARSAN D, Full Stack Developer, React, Node.js, TypeScript, SRM University" />
         <link rel="canonical" href="https://dharsan.dev" />
       </Helmet>
 
       <div className="min-h-screen bg-background">
-        <Navbar />
         <main>
           <Hero />
-          <section id="about" className="sr-only">
-            <h2>About DHARSAN D</h2>
-          </section>
           <Skills />
           <Projects />
           <Contact />

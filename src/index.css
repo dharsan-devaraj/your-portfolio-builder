@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,50 +6,39 @@
 
 @layer base {
   :root {
-    --background: 0 0% 7%;
-    --foreground: 0 0% 85%;
+    /* SEYI.DEV EXACT COLOR SYSTEM */
+    --background: 0 0% 4%;
+    --foreground: 0 0% 95%;
 
-    --card: 0 0% 9%;
-    --card-foreground: 0 0% 85%;
+    --card: 0 0% 4%;
+    --card-foreground: 0 0% 95%;
 
-    --popover: 0 0% 9%;
-    --popover-foreground: 0 0% 85%;
+    --popover: 0 0% 4%;
+    --popover-foreground: 0 0% 95%;
 
-    --primary: 0 0% 65%;
-    --primary-foreground: 0 0% 7%;
+    --primary: 0 0% 95%;
+    --primary-foreground: 0 0% 4%;
 
-    --secondary: 0 0% 12%;
-    --secondary-foreground: 0 0% 85%;
+    --secondary: 0 0% 8%;
+    --secondary-foreground: 0 0% 95%;
 
-    --muted: 0 0% 14%;
-    --muted-foreground: 0 0% 55%;
+    --muted: 0 0% 8%;
+    --muted-foreground: 0 0% 56%;
 
-    --accent: 25 95% 53%;
-    --accent-foreground: 0 0% 7%;
+    --accent: 0 0% 8%;
+    --accent-foreground: 0 0% 95%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 18%;
-    --input: 0 0% 18%;
-    --ring: 0 0% 65%;
+    --border: 0 0% 100%;
+    --input: 0 0% 15%;
+    --ring: 0 0% 95%;
 
-    --radius: 0.5rem;
+    --radius: 0rem;
 
-    /* Custom design tokens - Monochrome techy */
-    --gradient-primary: linear-gradient(135deg, hsl(0 0% 65%) 0%, hsl(0 0% 45%) 100%);
-    --gradient-hero: linear-gradient(180deg, hsl(0 0% 7%) 0%, hsl(0 0% 10%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 11%) 0%, hsl(0 0% 7%) 100%);
-    --glow-primary: 0 0 60px hsl(0 0% 45% / 0.2);
-    --glow-soft: 0 0 30px hsl(0 0% 45% / 0.1);
-
-    --font-display: 'Space Grotesk', sans-serif;
+    --font-display: 'Inter', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
-  }
-
-  .dark {
-    --background: 0 0% 5%;
-    --foreground: 0 0% 90%;
   }
 
   html {
@@ -74,59 +63,82 @@
   code, pre {
     font-family: var(--font-mono);
   }
+
+  /* Remove all default selection colors for brutalist feel */
+  ::selection {
+    background: hsl(0 0% 95%);
+    color: hsl(0 0% 4%);
+  }
 }
 
 @layer utilities {
-  .text-gradient {
-    @apply bg-clip-text text-transparent;
-    background-image: var(--gradient-primary);
+  /* Brutalist divider line */
+  .divider-line {
+    @apply w-full h-px bg-foreground;
   }
 
-  .bg-gradient-primary {
-    background-image: var(--gradient-primary);
+  /* Editorial text styles */
+  .text-editorial {
+    letter-spacing: -0.02em;
+    line-height: 0.9;
   }
 
-  .bg-gradient-hero {
-    background-image: var(--gradient-hero);
+  /* Subtle fade animation */
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
-  .bg-gradient-card {
-    background-image: var(--gradient-card);
+  .animate-fade-in-up {
+    animation: fade-in-up 0.6s ease-out forwards;
   }
 
-  .glow-primary {
-    box-shadow: var(--glow-primary);
+  /* Character stagger animation */
+  @keyframes char-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
-  .glow-soft {
-    box-shadow: var(--glow-soft);
+  .char-reveal {
+    animation: char-reveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
-  .glass {
-    @apply backdrop-blur-xl bg-card/60 border border-border/50;
+  /* Slide up reveal */
+  @keyframes slide-up-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
+  .slide-up-reveal {
+    animation: slide-up-reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
-  @keyframes float {
+  /* Arrow bounce */
+  @keyframes arrow-bounce {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
+    50% { transform: translateY(6px); }
   }
 
-  .animate-pulse-glow {
-    animation: pulse-glow 3s ease-in-out infinite;
-  }
-
-  @keyframes pulse-glow {
-    0%, 100% { box-shadow: 0 0 20px hsl(0 0% 50% / 0.15); }
-    50% { box-shadow: 0 0 40px hsl(0 0% 50% / 0.3); }
-  }
-
-  .text-outline {
-    -webkit-text-stroke: 1px hsl(var(--foreground) / 0.4);
-    color: transparent;
+  .arrow-bounce {
+    animation: arrow-bounce 1.5s ease-in-out infinite;
   }
 
   /* Magnetic button effect */
@@ -149,83 +161,5 @@
 
   .magnetic-btn:hover span {
     @apply text-background;
-  }
-
-  /* Line reveal animation */
-  .line-reveal {
-    @apply relative overflow-hidden;
-  }
-
-  .line-reveal::after {
-    content: '';
-    @apply absolute bottom-0 left-0 w-full h-px bg-foreground scale-x-0 origin-left transition-transform duration-500 ease-out;
-  }
-
-  .line-reveal:hover::after {
-    @apply scale-x-100;
-  }
-
-  /* Character stagger animation */
-  @keyframes char-reveal {
-    from {
-      opacity: 0;
-      transform: translateY(100%);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .char-reveal {
-    animation: char-reveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  }
-
-  /* Scale on scroll */
-  @keyframes scale-up {
-    from {
-      transform: scale(0.9);
-      opacity: 0;
-    }
-    to {
-      transform: scale(1);
-      opacity: 1;
-    }
-  }
-
-  /* Slide up reveal */
-  @keyframes slide-up-reveal {
-    from {
-      opacity: 0;
-      transform: translateY(60px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .slide-up-reveal {
-    animation: slide-up-reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  }
-
-  /* Arrow bounce */
-  @keyframes arrow-bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(8px); }
-  }
-
-  .arrow-bounce {
-    animation: arrow-bounce 1.5s ease-in-out infinite;
-  }
-
-  /* Copy feedback */
-  @keyframes copy-flash {
-    0% { background-color: hsl(var(--foreground) / 0.1); }
-    100% { background-color: transparent; }
-  }
-
-  .copy-flash {
-    animation: copy-flash 0.3s ease-out;
   }
 }
