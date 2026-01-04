@@ -2,96 +2,143 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 const skillCategories = [
-  { title: "Languages", skills: ["Python", "TypeScript", "JavaScript", "Java", "C++"] },
-  { title: "Frontend", skills: ["React", "Next.js", "Tailwind CSS", "Framer Motion"] },
-  { title: "Backend", skills: ["Node.js", "Express", "FastAPI", "PostgreSQL", "MongoDB"] },
-  { title: "Tools", skills: ["Git", "Docker", "AWS", "Figma", "VS Code"] },
+  { title: "Languages", skills: ["Python", "C++", "JavaScript", "PHP"] },
+  { title: "Frontend", skills: ["HTML", "CSS", "React"] },
+  { title: "Backend", skills: ["Node.js", "Express.js", "Flask", "Django", "FastAPI"] },
+  { title: "Databases", skills: ["MySQL", "MongoDB"] },
+];
+
+const roleLines = [
+  "BUILDING SCALABLE FULL-STACK WEB APPLICATIONS WITH MODERN FRAMEWORKS",
+  "CRAFTING RESPONSIVE & PIXEL-PERFECT USER INTERFACES",
+  "DEVELOPING ROBUST & SECURE RESTFUL API ARCHITECTURES",
+  "ARCHITECTING EFFICIENT DATABASE SOLUTIONS & DATA MODELS",
+  "DELIVERING SEAMLESS & INTUITIVE USER EXPERIENCES",
+  "IMPLEMENTING CLEAN CODE & BEST DEVELOPMENT PRACTICES",
+  "INTEGRATING THIRD-PARTY SERVICES & CLOUD PLATFORMS",
+  "OPTIMIZING PERFORMANCE & APPLICATION SCALABILITY",
 ];
 
 const Skills = () => {
   const sectionRef = useRef<HTMLElement>(null);
+  const linesRef = useRef<HTMLDivElement>(null);
+  
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],
   });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+  const { scrollYProgress: linesScrollProgress } = useScroll({
+    target: linesRef,
+    offset: ["start end", "end start"],
+  });
+
+  const headerX = useTransform(scrollYProgress, [0, 0.3], [-100, 0]);
+  const headerOpacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
+
+  // Lines sliding in opposite directions - continuous movement throughout scroll
+  const line1X = useTransform(linesScrollProgress, [0, 1], [-800, 200]);
+  const line2X = useTransform(linesScrollProgress, [0, 1], [800, -200]);
+  const line3X = useTransform(linesScrollProgress, [0, 1], [-900, 250]);
+  const line4X = useTransform(linesScrollProgress, [0, 1], [900, -250]);
+  const line5X = useTransform(linesScrollProgress, [0, 1], [-850, 220]);
+  const line6X = useTransform(linesScrollProgress, [0, 1], [850, -220]);
+  const line7X = useTransform(linesScrollProgress, [0, 1], [-800, 200]);
+  const line8X = useTransform(linesScrollProgress, [0, 1], [800, -200]);
+  
+  const lineTransforms = [line1X, line2X, line3X, line4X, line5X, line6X, line7X, line8X];
 
   return (
-    <section
-      id="skills"
-      ref={sectionRef}
-      className="relative py-32 md:py-48 bg-background"
-    >
-      {/* Top divider */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-foreground" />
-
-      <motion.div style={{ opacity }} className="px-6 md:px-12 lg:px-16">
-        {/* Section Header */}
-        <div className="mb-24 md:mb-32">
-          <motion.span
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-[11px] font-medium tracking-[0.2em] text-muted-foreground uppercase block mb-6"
+    <section ref={sectionRef} id="skills" className="py-24 relative overflow-hidden">
+      {/* Role lines section - Full width with partition lines */}
+      <div ref={linesRef} className="mb-20 overflow-hidden">
+        {roleLines.map((line, index) => (
+          <motion.div
+            key={index}
+            style={{ x: lineTransforms[index] }}
+            className="border-b border-muted-foreground/20 group cursor-default"
           >
-            (01)
-          </motion.span>
-          <motion.h2
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="font-black uppercase tracking-[-0.04em] leading-[0.9] text-foreground"
-            style={{ fontSize: "clamp(3rem, 8vw, 7rem)" }}
-          >
-            SKILLS
-          </motion.h2>
-        </div>
+            <motion.div
+              className="py-12 md:py-16 px-4 md:px-8 transition-colors duration-300"
+            >
+              <motion.p
+                className="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-muted-foreground/50 group-hover:text-orange-500 transition-colors duration-300 whitespace-nowrap uppercase tracking-wide"
+                style={{ transform: 'scaleY(1.25)', transformOrigin: 'center' }}
+              >
+                {line}
+              </motion.p>
+            </motion.div>
+          </motion.div>
+        ))}
+      </div>
 
-        {/* Skills Grid - Editorial Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
+      <div className="container px-6">
+        <motion.div
+          style={{ x: headerX, opacity: headerOpacity }}
+          className="flex items-baseline justify-between border-b border-border pb-6 mb-20"
+        >
+          <h2 className="text-[10px] font-mono tracking-[0.3em] text-muted-foreground/50 uppercase hover:text-muted-foreground transition-colors duration-300 cursor-default">
+            Skills & Technologies
+          </h2>
+          <span className="text-[10px] font-mono text-muted-foreground/50 hover:text-muted-foreground transition-colors duration-300 cursor-default">
+            ({skillCategories.reduce((acc, cat) => acc + cat.skills.length, 0)})
+          </span>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16">
           {skillCategories.map((category, categoryIndex) => (
             <motion.div
               key={category.title}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: categoryIndex % 2 === 0 ? -100 : 100 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
-              className="group"
+              transition={{ delay: categoryIndex * 0.15, duration: 0.6 }}
             >
-              {/* Category Title */}
-              <div className="flex items-center justify-between mb-8 pb-4 border-b border-foreground">
-                <h3 className="text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
-                  {category.title}
-                </h3>
-                <span className="text-xs font-medium tracking-[0.1em] text-muted-foreground">
-                  0{categoryIndex + 1}
-                </span>
-              </div>
-
-              {/* Skills List */}
+              <h3 className="text-sm font-mono text-muted-foreground/50 mb-8 tracking-[0.2em] uppercase border-b border-border/50 pb-3 transition-colors duration-300 cursor-default">
+                {category.title}
+              </h3>
               <div className="space-y-4">
                 {category.skills.map((skill, skillIndex) => (
                   <motion.div
                     key={skill}
-                    initial={{ opacity: 0, x: -20 }}
+                    initial={{ opacity: 0, x: categoryIndex % 2 === 0 ? -50 : 50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: categoryIndex * 0.1 + skillIndex * 0.05 }}
-                    className="group/skill"
+                    transition={{ delay: (categoryIndex * 4 + skillIndex) * 0.05, duration: 0.5 }}
                   >
-                    <span className="text-2xl md:text-3xl font-semibold text-foreground tracking-[-0.02em] group-hover/skill:text-muted-foreground transition-colors duration-300">
+                    <motion.span
+                      whileHover={{ x: 15 }}
+                      transition={{ duration: 0.3 }}
+                      className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight cursor-default inline-block text-muted-foreground/50 hover:text-orange-500 transition-colors duration-300"
+                    >
                       {skill}
-                    </span>
+                    </motion.span>
                   </motion.div>
                 ))}
               </div>
             </motion.div>
           ))}
         </div>
-      </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.6, duration: 0.8 }}
+          className="mt-24 pt-8 border-t border-border"
+        >
+          <motion.div className="flex items-center gap-4" whileHover={{ x: 8 }} transition={{ duration: 0.3 }}>
+            <motion.div 
+              className="w-2 h-2 bg-muted-foreground/50 rounded-full"
+              animate={{ scale: [1, 1.4, 1], opacity: [1, 0.5, 1] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <span className="text-[10px] font-mono text-muted-foreground/50 tracking-[0.15em] hover:text-muted-foreground transition-colors duration-300 cursor-default uppercase">
+              Always learning and exploring new technologies
+            </span>
+          </motion.div>
+        </motion.div>
+      </div>
     </section>
   );
 };
