@@ -103,7 +103,7 @@ const Hero = () => {
           </h1>
           
           {/* DEVELOPER */}
-          <h1 className="text-[clamp(4rem,14vw,11rem)] font-black leading-[0.9] tracking-[-0.02em] overflow-visible whitespace-nowrap mt-4" style={{ transform: 'scaleY(1.3)', transformOrigin: 'top' }}>
+          <h1 className="text-[clamp(4rem,14vw,11rem)] font-black leading-[0.9] tracking-[-0.02em] overflow-visible whitespace-nowrap mt-8" style={{ transform: 'scaleY(1.3)', transformOrigin: 'top' }}>
             <span className="block">
               {"DEVELOPER".split("").map((char, i) => (
                 <motion.span
