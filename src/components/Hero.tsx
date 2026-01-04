@@ -56,7 +56,7 @@ const Hero = () => {
         {/* Main Title Section */}
         <div className="flex-1 flex flex-col justify-center">
           {/* FULL — STACK line */}
-          <h1 className="text-[clamp(5rem,18vw,14rem)] font-bold leading-[0.85] tracking-[-0.03em] overflow-visible whitespace-nowrap" style={{ transform: 'scaleY(1.3)', transformOrigin: 'top' }}>
+          <h1 className="text-[clamp(4rem,14vw,11rem)] font-black leading-[0.85] tracking-[-0.02em] overflow-visible whitespace-nowrap" style={{ transform: 'scaleY(1.3)', transformOrigin: 'top' }}>
             <span className="flex items-center justify-start">
               <motion.span 
                 style={{ x: fullX }}
@@ -103,7 +103,7 @@ const Hero = () => {
           </h1>
           
           {/* DEVELOPER */}
-          <h1 className="text-[clamp(5rem,18vw,14rem)] font-bold leading-[0.9] tracking-[-0.03em] overflow-visible whitespace-nowrap mt-4" style={{ transform: 'scaleY(1.3)', transformOrigin: 'top' }}>
+          <h1 className="text-[clamp(4rem,14vw,11rem)] font-black leading-[0.9] tracking-[-0.02em] overflow-visible whitespace-nowrap mt-4" style={{ transform: 'scaleY(1.3)', transformOrigin: 'top' }}>
             <span className="block">
               {"DEVELOPER".split("").map((char, i) => (
                 <motion.span
