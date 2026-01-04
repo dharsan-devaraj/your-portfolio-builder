@@ -9,159 +9,118 @@ const Hero = () => {
     }
   };
 
-  const charVariants = {
-    hidden: { opacity: 0, y: 60 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: 0.4 + i * 0.025,
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1] as const,
-      },
-    }),
-  };
-
   return (
     <section className="relative h-screen flex flex-col bg-background overflow-hidden">
-      {/* Top Bar - Minimal */}
+      {/* Top Bar - Matching seyi.dev exactly */}
       <motion.header
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.2 }}
-        className="absolute top-0 left-0 right-0 z-20 px-6 md:px-8 py-6"
+        className="absolute top-0 left-0 right-0 z-20 px-6 md:px-10 py-6"
       >
-        <div className="flex items-center justify-between">
-          {/* Left - Name */}
-          <span className="text-[10px] md:text-[11px] font-normal tracking-[0.12em] text-muted-foreground/70 uppercase">
-            Dharsan D
-          </span>
+        <div className="flex items-start justify-between">
+          {/* Left - Name stacked */}
+          <div className="flex flex-col">
+            <span className="text-[10px] md:text-[11px] font-medium tracking-[0.08em] text-muted-foreground uppercase leading-tight">
+              DHARSAN
+            </span>
+            <span className="text-[10px] md:text-[11px] font-medium tracking-[0.08em] text-muted-foreground uppercase leading-tight">
+              D
+            </span>
+          </div>
 
-          {/* Center - Role (hidden on mobile) */}
-          <span className="hidden lg:block text-[10px] font-normal tracking-[0.1em] text-muted-foreground/50 uppercase">
-            Full Stack Developer — 2024
-          </span>
+          {/* Center - Role/Folio */}
+          <div className="hidden md:flex flex-col items-center">
+            <span className="text-[10px] font-medium tracking-[0.08em] text-muted-foreground uppercase leading-tight">
+              FULL STACK DEVELOPER
+            </span>
+            <span className="text-[10px] font-medium tracking-[0.08em] text-muted-foreground uppercase leading-tight">
+              FOLIO / 2021 — 2024
+            </span>
+          </div>
 
-          {/* Right - Navigation */}
-          <nav className="flex items-center gap-6">
-            {["Skills", "Projects", "Contact"].map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection(item.toLowerCase());
-                }}
-                className="text-[10px] md:text-[11px] font-normal tracking-[0.12em] text-muted-foreground/70 uppercase hover:text-foreground transition-colors duration-300"
-              >
-                {item}
-              </a>
-            ))}
-          </nav>
+          {/* Right - Contact Button */}
+          <button
+            onClick={() => scrollToSection("contact")}
+            className="text-[10px] md:text-[11px] font-medium tracking-[0.08em] text-foreground uppercase px-4 py-2 border border-foreground/80 hover:bg-foreground hover:text-background transition-all duration-300"
+          >
+            CONTACT
+          </button>
         </div>
       </motion.header>
 
-      {/* Main Hero Content - Hard Left Aligned */}
-      <div className="flex-1 flex items-end pb-[18vh] pl-[10vw] md:pl-[12vw] lg:pl-[14vw] pr-6">
+      {/* Main Hero Content - Full width typography like seyi.dev */}
+      <div className="flex-1 flex items-center px-6 md:px-10 pt-20">
         <div className="w-full">
-          {/* FULL — STACK */}
-          <h1
-            className="font-black uppercase tracking-[-0.03em] leading-none text-foreground"
-            style={{ fontSize: "clamp(3.5rem, 10vw, 9rem)" }}
+          {/* FULL —— STACK - First line */}
+          <motion.h1
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="font-hero uppercase tracking-[0.02em] leading-[0.85] text-muted-foreground"
+            style={{ fontSize: "clamp(4rem, 15vw, 16rem)" }}
           >
-            <span className="flex items-center">
-              {"FULL".split("").map((char, i) => (
-                <motion.span
-                  key={i}
-                  custom={i}
-                  variants={charVariants}
-                  initial="hidden"
-                  animate="visible"
-                  className="inline-block"
-                >
-                  {char}
-                </motion.span>
-              ))}
-
-              {/* Thin subtle dash */}
-              <motion.span
-                initial={{ scaleX: 0, opacity: 0 }}
-                animate={{ scaleX: 1, opacity: 0.4 }}
-                transition={{ delay: 0.7, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                className="inline-block bg-foreground/60 mx-[0.25em] origin-left"
+            <span className="inline-flex items-center">
+              FULL
+              {/* Long double dash like seyi.dev */}
+              <span 
+                className="inline-block bg-muted-foreground mx-[0.15em]"
                 style={{
-                  width: "clamp(1.5rem, 5vw, 5rem)",
-                  height: "clamp(2px, 0.35vw, 4px)",
+                  width: "clamp(3rem, 12vw, 14rem)",
+                  height: "clamp(4px, 0.8vw, 10px)",
                 }}
               />
-
-              {"STACK".split("").map((char, i) => (
-                <motion.span
-                  key={i + 4}
-                  custom={i + 5}
-                  variants={charVariants}
-                  initial="hidden"
-                  animate="visible"
-                  className="inline-block"
-                >
-                  {char}
-                </motion.span>
-              ))}
+              STACK
             </span>
-          </h1>
+          </motion.h1>
 
-          {/* DEVELOPER - More vertical spacing */}
-          <h1
-            className="font-black uppercase tracking-[-0.03em] leading-none text-foreground mt-2 md:mt-4"
-            style={{ fontSize: "clamp(3.5rem, 10vw, 9rem)" }}
+          {/* DEVELOPER - Second line */}
+          <motion.h1
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="font-hero uppercase tracking-[0.02em] leading-[0.85] text-muted-foreground -mt-2 md:-mt-4"
+            style={{ fontSize: "clamp(4rem, 15vw, 16rem)" }}
           >
-            {"DEVELOPER".split("").map((char, i) => (
-              <motion.span
-                key={i}
-                custom={i + 10}
-                variants={charVariants}
-                initial="hidden"
-                animate="visible"
-                className="inline-block"
-              >
-                {char}
-              </motion.span>
-            ))}
-          </h1>
+            DEVELOPER
+          </motion.h1>
         </div>
       </div>
 
-      {/* About Text - Right side, small, faded */}
+      {/* About Text - Right side with "ABOUT" label like seyi.dev */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.2 }}
-        className="absolute right-6 md:right-8 lg:right-12 bottom-[18vh] max-w-[280px] lg:max-w-[300px] text-right"
+        transition={{ duration: 1, delay: 1 }}
+        className="absolute right-6 md:right-10 bottom-[15vh] md:bottom-[18vh] max-w-[320px] lg:max-w-[380px] text-left"
       >
-        <p className="text-[11px] md:text-xs text-muted-foreground/40 leading-[1.8] font-normal">
-          Full-stack developer based in Chennai. Currently pursuing B.Tech ECE at SRM University KTR. Building digital experiences with clean code.
+        <span className="text-[10px] font-medium tracking-[0.1em] text-muted-foreground/60 uppercase mb-3 block">
+          About
+        </span>
+        <p className="text-[13px] md:text-[14px] text-muted-foreground leading-[1.7] font-normal">
+          I am a developer based in Chennai, India focused on creating interactive digital experiences on the web, currently pursuing B.Tech ECE at SRM University KTR whilst building clean, modern solutions.
         </p>
       </motion.div>
 
-      {/* Scroll Indicator - Bottom Left */}
+      {/* Scroll Indicator - Bottom Right like seyi.dev */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.8, duration: 0.6 }}
-        className="absolute bottom-8 left-[10vw] md:left-[12vw] lg:left-[14vw]"
+        transition={{ delay: 1.5, duration: 0.6 }}
+        className="absolute bottom-8 right-6 md:right-10"
       >
         <button
           onClick={() => scrollToSection("skills")}
-          className="flex items-center gap-2 text-muted-foreground/40 hover:text-muted-foreground/70 transition-colors duration-300"
+          className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors duration-300"
         >
-          <span className="text-[10px] font-normal tracking-[0.15em] uppercase">
-            Scroll
+          <span className="text-[12px] font-normal tracking-[0.02em]">
+            Scroll down
           </span>
           <motion.div
             animate={{ y: [0, 4, 0] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
           >
-            <ArrowDown className="w-3 h-3" />
+            <ArrowDown className="w-4 h-4" />
           </motion.div>
         </button>
       </motion.div>
