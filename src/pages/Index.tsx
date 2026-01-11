@@ -16,7 +16,7 @@ const Index = () => {
           content="DHARSAN D - Full Stack Developer and Software Engineer. B.Tech ECE student at SRM University KTR. Expert in React, Node.js, Python, and modern web technologies." 
         />
         <meta name="keywords" content="DHARSAN D, Full Stack Developer, Software Engineer, React, Node.js, Python, SRM University" />
-        <link rel="canonical" href="https://dharsan.dev" />
+        <link rel="canonical" href="https://dharsan-devaraj.github.io/portfolio" />
       </Helmet>
 
       <div className="min-h-screen bg-background">
