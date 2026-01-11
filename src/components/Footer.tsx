@@ -38,19 +38,19 @@ const Footer = () => {
     <footer className="py-12 border-t border-border/30">
       <div className="container px-4 md:px-6">
         {/* Top info row - symmetric */}
-        <div className="grid grid-cols-3 items-center py-8 border-b border-muted-foreground/20">
-          <div className="text-left">
-            <p className="text-xs font-mono text-muted-foreground/50 tracking-wider uppercase">Email</p>
-            <a href="mailto:dharsand2006@gmail.com" className="text-sm text-muted-foreground/70 hover:text-orange-500 transition-colors">
+        <div className="grid grid-cols-1 sm:grid-cols-3 items-start sm:items-center gap-6 sm:gap-0 py-8 border-b border-muted-foreground/20">
+          <div className="text-left sm:text-left">
+            <p className="text-xs font-mono text-muted-foreground/50 tracking-wider uppercase mb-1">Email</p>
+            <a href="mailto:dharsand2006@gmail.com" className="text-sm text-muted-foreground/70 hover:text-orange-500 transition-colors break-all">
               dharsand2006@gmail.com
             </a>
           </div>
-          <div className="text-center">
-            <p className="text-xs font-mono text-muted-foreground/50 tracking-wider uppercase">Location</p>
+          <div className="text-left sm:text-center">
+            <p className="text-xs font-mono text-muted-foreground/50 tracking-wider uppercase mb-1">Location</p>
             <p className="text-sm text-muted-foreground/70">Chennai, India</p>
           </div>
-          <div className="text-right">
-            <p className="text-xs font-mono text-muted-foreground/50 tracking-wider uppercase">University</p>
+          <div className="text-left sm:text-right">
+            <p className="text-xs font-mono text-muted-foreground/50 tracking-wider uppercase mb-1">University</p>
             <p className="text-sm text-muted-foreground/70">SRM University KTR</p>
           </div>
         </div>

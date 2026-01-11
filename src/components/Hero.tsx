@@ -38,7 +38,7 @@ const Hero = () => {
   };
 
   return (
-    <section ref={containerRef} className="relative min-h-screen flex flex-col overflow-hidden bg-background">
+    <section ref={containerRef} className="relative min-h-screen flex flex-col overflow-x-hidden bg-background">
       {/* Subtle grid background */}
       <div 
         className="absolute inset-0 opacity-[0.02]"
@@ -122,12 +122,13 @@ const Hero = () => {
         </div>
 
         {/* Bottom Section - Full Width with About on Right */}
-        <div className="flex items-end justify-between border-t border-muted-foreground/20 pt-8 mt-8">
+        <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 md:gap-0 border-t border-muted-foreground/20 pt-8 mt-8">
           {/* Left side - Scroll indicator */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.5, duration: 0.6 }}
+            className="order-1 md:order-1"
           >
             <button
               onClick={() => scrollToSection("skills")}
@@ -148,7 +149,7 @@ const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2, duration: 0.6 }}
-            className="text-center"
+            className="text-center order-2 md:order-2"
           >
             <p className="text-xs font-mono text-muted-foreground/40 tracking-wider">2024</p>
           </motion.div>
@@ -159,7 +160,7 @@ const Hero = () => {
             initial={{ opacity: 0, x: 60 }}
             animate={isAboutInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.8 }}
-            className="max-w-sm text-right"
+            className="max-w-sm text-left md:text-right order-3 md:order-3 w-full md:w-auto"
           >
             <p className="text-xs font-mono text-muted-foreground/50 tracking-[0.2em] mb-3 uppercase">
               About

@@ -73,7 +73,7 @@ const Contact = () => {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
           >
-            <h3 className="text-[clamp(3rem,8vw,6rem)] font-bold leading-[0.85] tracking-[-0.04em] mb-10 overflow-hidden">
+            <h3 className="text-[clamp(2rem,8vw,6rem)] font-bold leading-[0.85] tracking-[-0.04em] mb-6 md:mb-10 overflow-hidden">
               <span className="block">
                 {line1.split("").map((char, i) => (
                   <motion.span
@@ -181,7 +181,7 @@ const Contact = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.8, duration: 0.6 }}
-              className="p-6 bg-secondary/30 border border-border font-mono text-sm"
+              className="p-4 md:p-6 bg-secondary/30 border border-border font-mono text-xs md:text-sm overflow-x-auto"
             >
               <div className="flex items-center gap-2 mb-4">
                 <div className="w-3 h-3 rounded-full bg-muted-foreground/20 hover:bg-foreground transition-colors" />

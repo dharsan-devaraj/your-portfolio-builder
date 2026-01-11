@@ -4,9 +4,76 @@ My personal portfolio website showcasing my projects, skills, and experience as 
 
 🌐 **Live Site:** [dharsan-devaraj.github.io/portfolio](https://dharsan-devaraj.github.io/portfolio)
 
+> ✅ **Fully Responsive** - Works perfectly on **PC, Mobile, and Tablet** devices!
+
 ## About
 
-This is my personal portfolio website built to showcase my work and skills. It features a modern, minimalist design with smooth animations and a responsive layout.
+This is my personal portfolio website built to showcase my work and skills. It features a modern, minimalist design with smooth animations and a fully responsive layout that adapts to any screen size.
+
+## Access the Website
+
+### 🌍 View Online (Any Device)
+
+Simply open this link on **any device** (PC, mobile phone, or tablet):
+- **URL:** https://dharsan-devaraj.github.io/portfolio
+
+The website is fully optimized and will automatically adjust to your device's screen size. No installation required!
+
+### 💻 Run Locally on Your PC
+
+If you want to run the website on your computer for development:
+
+#### Prerequisites
+
+- **Node.js** (v18 or higher) - [Download here](https://nodejs.org/)
+- **npm** (comes with Node.js) or **yarn**
+
+#### Installation Steps
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/dharsan-devaraj/portfolio.git
+   cd portfolio
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+
+4. **Open in your browser:**
+   - The server will start at `http://localhost:8080`
+   - Open this URL in any browser (Chrome, Firefox, Safari, Edge, etc.)
+   - The website will work on your PC and you can test it by resizing the browser window
+
+### 📱 Access on Mobile Devices
+
+#### Option 1: View the Live Site
+- Open your mobile browser (Chrome, Safari, Firefox, etc.)
+- Visit: **https://dharsan-devaraj.github.io/portfolio**
+- The site will automatically adapt to your mobile screen
+
+#### Option 2: Run Locally on Mobile (Advanced)
+
+If you're running the dev server on your PC and want to access it from your phone:
+
+1. **Find your PC's IP address:**
+   - **Windows:** Open Command Prompt and type `ipconfig`, look for "IPv4 Address"
+   - **Mac/Linux:** Open Terminal and type `ifconfig` or `ip addr`, look for your local IP (usually starts with 192.168.x.x)
+
+2. **Make sure your PC and phone are on the same Wi-Fi network**
+
+3. **Start the dev server** (as shown above)
+
+4. **On your mobile device:**
+   - Open your mobile browser
+   - Go to: `http://YOUR_PC_IP:8080` (replace YOUR_PC_IP with your actual IP address)
+   - Example: `http://192.168.1.100:8080`
 
 ## Tech Stack
 
@@ -20,39 +87,14 @@ This is my personal portfolio website built to showcase my work and skills. It f
 
 ## Features
 
-- Responsive design that works on all devices
-- Smooth scroll animations and transitions
-- Dark theme with custom color palette
-- Contact form with email integration
-- Skills showcase with interactive elements
-- Projects section (coming soon)
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js (v18 or higher)
-- npm or yarn
-
-### Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/dharsan-devaraj/portfolio.git
-cd portfolio
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Start the development server:
-```bash
-npm run dev
-```
-
-4. Open your browser and navigate to `http://localhost:8080`
+- ✅ **Fully Responsive** - Works on all devices (PC, mobile, tablet)
+- ✅ **Mobile Optimized** - Smooth experience on phones and tablets
+- ✅ **Desktop Optimized** - Beautiful layout on large screens
+- ✅ Smooth scroll animations and transitions
+- ✅ Dark theme with custom color palette
+- ✅ Contact form with email integration
+- ✅ Skills showcase with interactive elements
+- ✅ Projects section (coming soon)
 
 ## Build for Production
 
@@ -61,6 +103,38 @@ npm run build
 ```
 
 The built files will be in the `dist` directory, ready to be deployed.
+
+## Deployment
+
+This portfolio is configured for automatic deployment to GitHub Pages. 
+
+### Automatic Deployment (Recommended)
+
+1. Push your code to the `main` branch on GitHub
+2. Go to your repository settings → Pages
+3. Under "Source", select "GitHub Actions"
+4. The site will automatically deploy when you push to `main`
+
+The site will be available at: `https://dharsan-devaraj.github.io/portfolio`
+
+### Manual Deployment
+
+If you prefer to deploy manually:
+
+1. Build the project: `npm run build`
+2. Push the `dist` folder to the `gh-pages` branch, or
+3. Use GitHub CLI: `gh-pages -d dist`
+
+## Browser Compatibility
+
+The website works on all modern browsers:
+- ✅ Chrome (Desktop & Mobile)
+- ✅ Firefox (Desktop & Mobile)
+- ✅ Safari (Desktop & Mobile)
+- ✅ Edge
+- ✅ Opera
+- ✅ Samsung Internet
+- ✅ Any modern mobile browser
 
 ## Project Structure
 

@@ -62,7 +62,7 @@ const Skills = () => {
               className="py-12 md:py-16 px-4 md:px-8 transition-colors duration-300"
             >
               <motion.p
-                className="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-muted-foreground/50 group-hover:text-orange-500 transition-colors duration-300 whitespace-nowrap uppercase tracking-wide"
+                className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-muted-foreground/50 group-hover:text-orange-500 transition-colors duration-300 whitespace-nowrap uppercase tracking-wide"
                 style={{ transform: 'scaleY(1.25)', transformOrigin: 'center' }}
               >
                 {line}
