@@ -108,22 +108,51 @@ The built files will be in the `dist` directory, ready to be deployed.
 
 This portfolio is configured for automatic deployment to GitHub Pages. 
 
+### ⚠️ Important: Fix 404 Error
+
+If you see a 404 error when visiting the site, follow these steps:
+
+1. **Enable GitHub Pages:**
+   - Go to your repository on GitHub
+   - Click **Settings** → **Pages**
+   - Under **Source**, select **"GitHub Actions"** (NOT "Deploy from a branch")
+   - Click **Save**
+
+2. **Push your code:**
+   ```bash
+   git add .
+   git commit -m "Deploy to GitHub Pages"
+   git push origin main
+   ```
+
+3. **Check deployment:**
+   - Go to **Actions** tab in your repository
+   - Wait for "Deploy to GitHub Pages" workflow to complete
+   - Wait 1-2 minutes for DNS to propagate
+   - Visit: https://dharsan-devaraj.github.io/portfolio
+
 ### Automatic Deployment (Recommended)
 
-1. Push your code to the `main` branch on GitHub
-2. Go to your repository settings → Pages
-3. Under "Source", select "GitHub Actions"
-4. The site will automatically deploy when you push to `main`
+The site will automatically deploy when you push to the `main` branch. Make sure:
+
+- ✅ Repository is named: `portfolio`
+- ✅ GitHub username is: `dharsan-devaraj`
+- ✅ GitHub Pages is enabled (Settings → Pages → Source: GitHub Actions)
+- ✅ Repository is **public** (or you have GitHub Pro)
 
 The site will be available at: `https://dharsan-devaraj.github.io/portfolio`
 
-### Manual Deployment
+### Troubleshooting 404 Error
 
-If you prefer to deploy manually:
+**If you still see 404 after following the steps above:**
 
-1. Build the project: `npm run build`
-2. Push the `dist` folder to the `gh-pages` branch, or
-3. Use GitHub CLI: `gh-pages -d dist`
+1. **Check repository name:** Must be exactly `portfolio` (case-sensitive)
+2. **Check GitHub Actions:** Go to Actions tab, ensure workflow completed successfully
+3. **Clear browser cache:** Hard refresh with `Ctrl+Shift+R` or `Cmd+Shift+R`
+4. **Wait a few minutes:** GitHub Pages can take 1-5 minutes to update
+5. **Verify workflow file:** Ensure `.github/workflows/deploy.yml` exists in your repo
+
+For detailed troubleshooting, see [DEPLOYMENT.md](./DEPLOYMENT.md)
 
 ## Browser Compatibility
 
