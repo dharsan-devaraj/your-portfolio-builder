@@ -2,7 +2,7 @@
 
 My personal portfolio website showcasing my projects, skills, and experience as a Full Stack Developer.
 
-🌐 **Live Site:** [dharsan-devaraj.github.io/portfolio](https://dharsan-devaraj.github.io/portfolio)
+🌐 **Live Site:** [dharsan-devaraj.github.io/your-portfolio-builder](https://dharsan-devaraj.github.io/your-portfolio-builder)
 
 > ✅ **Fully Responsive** - Works perfectly on **PC, Mobile, and Tablet** devices!
 
@@ -15,7 +15,7 @@ This is my personal portfolio website built to showcase my work and skills. It f
 ### 🌍 View Online (Any Device)
 
 Simply open this link on **any device** (PC, mobile phone, or tablet):
-- **URL:** https://dharsan-devaraj.github.io/portfolio
+- **URL:** https://dharsan-devaraj.github.io/your-portfolio-builder
 
 The website is fully optimized and will automatically adjust to your device's screen size. No installation required!
 
@@ -32,8 +32,8 @@ If you want to run the website on your computer for development:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/dharsan-devaraj/portfolio.git
-   cd portfolio
+   git clone https://github.com/dharsan-devaraj/your-portfolio-builder.git
+   cd your-portfolio-builder
    ```
 
 2. **Install dependencies:**
@@ -55,7 +55,7 @@ If you want to run the website on your computer for development:
 
 #### Option 1: View the Live Site
 - Open your mobile browser (Chrome, Safari, Firefox, etc.)
-- Visit: **https://dharsan-devaraj.github.io/portfolio**
+- Visit: **https://dharsan-devaraj.github.io/your-portfolio-builder**
 - The site will automatically adapt to your mobile screen
 
 #### Option 2: Run Locally on Mobile (Advanced)
@@ -129,7 +129,7 @@ If you see a 404 error when visiting the site, follow these steps:
    - Go to **Actions** tab in your repository
    - Wait for "Deploy to GitHub Pages" workflow to complete
    - Wait 1-2 minutes for DNS to propagate
-   - Visit: https://dharsan-devaraj.github.io/portfolio
+   - Visit: https://dharsan-devaraj.github.io/your-portfolio-builder
 
 ### Automatic Deployment (Recommended)
 
@@ -140,13 +140,13 @@ The site will automatically deploy when you push to the `main` branch. Make sure
 - ✅ GitHub Pages is enabled (Settings → Pages → Source: GitHub Actions)
 - ✅ Repository is **public** (or you have GitHub Pro)
 
-The site will be available at: `https://dharsan-devaraj.github.io/portfolio`
+The site will be available at: `https://dharsan-devaraj.github.io/your-portfolio-builder`
 
 ### Troubleshooting 404 Error
 
 **If you still see 404 after following the steps above:**
 
-1. **Check repository name:** Must be exactly `portfolio` (case-sensitive)
+1. **Check repository name:** Must be exactly `your-portfolio-builder` (case-sensitive)
 2. **Check GitHub Actions:** Go to Actions tab, ensure workflow completed successfully
 3. **Clear browser cache:** Hard refresh with `Ctrl+Shift+R` or `Cmd+Shift+R`
 4. **Wait a few minutes:** GitHub Pages can take 1-5 minutes to update

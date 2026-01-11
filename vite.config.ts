@@ -4,7 +4,10 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: process.env.NODE_ENV === 'production' ? '/portfolio/' : '/',
+  // Use environment variable for base path, or default to repository name
+  base: process.env.NODE_ENV === 'production' 
+    ? (process.env.VITE_BASE_PATH || '/your-portfolio-builder/')
+    : '/',
   server: {
     host: "::",
     port: 8080,
